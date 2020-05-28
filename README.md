@@ -8,7 +8,7 @@ This project was created to display my development skills as well as my interest
 
 Allows for the searching of stocks by name/ticker and displays information for stock \
 Sign up for an account and have a personal profile page displaying your watchlist \
-Add stocks to a watchlist\
+Add stocks to a watchlist
 
 ## Architecture
 
