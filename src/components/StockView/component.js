@@ -14,7 +14,7 @@ import StockTechnical from './StockTechnical';
 import StockRelated from './StockRelated';
 
 const StockView = ({basicInfo, companyInfo, earnings, priceTarget, recommendations, technicalAnalysis, related}) => {
-//Adjust background based on weather daily is up or down
+//Adjust background based on whether daily is up or down
 let bg = null;
 if (basicInfo.change>=0){
     bg = 'lightgreen';
@@ -27,18 +27,17 @@ const Background = styled.div`
     overflow: hidden;
     width: 100%;
     background-color: ${bg};
+    min-height: 100vh;
 `
 
 const WrapLeft = styled.div`
     float: left;
     width: 50%;
-    min-height: 100vh;
 `;
     
 const WrapRight = styled.div`
     float: right;
     width: 50%;
-    min-height: 100vh;
 `;
 
     return (  

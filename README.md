@@ -1,5 +1,5 @@
 # StockList
-Enables users to search information about stocks, create accounts, add stocks to a watchlist, and more. (created with React)
+Enables users to search information about stocks (company information, financial data, sentiment, news), create accounts, add stocks to a watchlist, and more. (created with React and the Finnhub API)
 
 (stocklist.abrahamzakharov.com)\
 This project was created to display my development skills as well as my interest in financial markets.
@@ -16,10 +16,11 @@ React frontend
 
 ## Tools/APIs Used
 
+Finnhub API
 
 ## Progress
 Homepage (0%)\
-Search bar - 0%\
+Search bar  and functionality (autocomplete searches)- 0%\
 Log in - 0%\
 \
 Login Page (0%)\
@@ -32,11 +33,11 @@ Design - 0%\
 Sign up functionality - 0%\
 Sign up error handling - 0%\
 \
-Individual Stock Page (0%)\
-Design - 0%\
+Individual Stock Page (20%)\
+Design - 50%\
 Integration with stock API - 0%\
-See stock price/historical - 0%\
-See latest news for stock - 0%\
+See stock price and other stock data (earnings, company info, recommendations, price targets, technical indicator sentiment, related companies) - 0%\
+See latest news for stock (company news, major developments, news sentiment, sector news sentiment) - 0%\
 Add stock to watchlist (when logged in) - 0%\
 \
 Profile page (when logged in) (0%)\
