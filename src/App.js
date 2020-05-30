@@ -6,7 +6,7 @@ import StockEngine from './components/StockEngine'
 function App() {
   return (
     <div className="App">
-      <StockEngine/>
+      <StockEngine ticker="AAPL"/>
     </div>
   );
 }

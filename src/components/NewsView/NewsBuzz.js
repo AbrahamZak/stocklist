@@ -1,21 +1,22 @@
 import React from 'react';
 
 import styled from 'styled-components';
-const NewsBuzz = ({articlesInLastWeek, weeklyAverage, buzzScore}) => {
-    
-    const TitleLabel = styled.p`
-    font-family: 'PT Sans', serif;
-    margin-left: 2.5%;
-    margin-bottom: 0;
-    font-size: 3rem;
-    font-weight: bold;
-    `
 
-    const BodyText = styled.p`
-    font-family: 'PT Sans', serif;
-    margin-left: 2.5%;
-    font-size: 1rem;
-    `
+const TitleLabel = styled.p`
+font-family: 'PT Sans', serif;
+margin-left: 2.5%;
+margin-bottom: 0;
+font-size: 3rem;
+font-weight: bold;
+`
+
+const BodyText = styled.div`
+font-family: 'PT Sans', serif;
+margin-left: 2.5%;
+font-size: 1rem;
+`
+
+const NewsBuzz = ({articlesInLastWeek, weeklyAverage, buzzScore}) => {
 
     return (  
         <>

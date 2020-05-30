@@ -13,23 +13,6 @@ import StockRecommend from './StockRecommend'
 import StockTechnical from './StockTechnical';
 import StockRelated from './StockRelated';
 
-const StockView = ({basicInfo, companyInfo, earnings, priceTarget, recommendations, technicalAnalysis, related}) => {
-//Adjust background based on whether daily is up or down
-let bg = null;
-if (basicInfo.change>=0){
-    bg = 'lightgreen';
-}
-else{
-    bg = '#ff644d';
-}
-
-const Background = styled.div`
-    overflow: hidden;
-    width: 100%;
-    background-color: ${bg};
-    min-height: 100vh;
-`
-
 const WrapLeft = styled.div`
     float: left;
     width: 50%;
@@ -40,8 +23,27 @@ const WrapRight = styled.div`
     width: 50%;
 `;
 
+const Background = styled.div`
+    overflow: hidden;
+    width: 100%;
+    background-color: ${props => props.bg};
+    min-height: 100vh;
+`
+
+const StockView = ({basicInfo, companyInfo, earnings, priceTarget, recommendations, technicalAnalysis, related}) => {
+    
+    //Adjust background based on whether daily is up or down
+    let bg = null;
+
+    if (basicInfo.change>=0){
+        bg = 'lightgreen';
+    }
+    else{
+        bg = '#ff644d';
+    }
+
     return (  
-        <Background>
+        <Background bg = {bg}>
         <WrapLeft>
             <StockName 
             name={basicInfo.name} 

@@ -2,23 +2,23 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-const StockDaily = ({todayHigh, todayLow, openPrice, prevClose}) => {
-    
-    const InfoLabelLeft = styled.div`
-    font-family: 'PT Sans', serif;
-    margin-left: 2.5%;
-    font-size: 1rem;
-    float: left;
-    width: 45%;
-    `
+const InfoLabelLeft = styled.div`
+font-family: 'PT Sans', serif;
+margin-left: 2.5%;
+font-size: 1rem;
+float: left;
+width: 45%;
+`
 
-    const InfoLabelRight = styled.div`
-    font-family: 'PT Sans', serif;
-    margin-left: 2.5%;
-    font-size: 1rem;
-    float: right;
-    width: 45%;
-    `
+const InfoLabelRight = styled.div`
+font-family: 'PT Sans', serif;
+margin-left: 2.5%;
+font-size: 1rem;
+float: right;
+width: 45%;
+`
+
+const StockDaily = ({todayHigh, todayLow, openPrice, prevClose}) => {
 
     //Convert large numbers to string with commas
     const format = num => 

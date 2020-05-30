@@ -1,31 +1,32 @@
 import React from 'react';
 
 import styled from 'styled-components';
+
+const TitleLabel = styled.p`
+font-family: 'PT Sans', serif;
+margin-left: 2.5%;
+margin-bottom: 0;
+font-size: 3rem;
+font-weight: bold;
+`
+
+const InfoLabelLeft = styled.div`
+font-family: 'PT Sans', serif;
+margin-left: 2.5%;
+font-size: 1rem;
+float: left;
+width: 45%;
+`
+
+const InfoLabelRight = styled.div`
+font-family: 'PT Sans', serif;
+margin-left: 2.5%;
+font-size: 1rem;
+float: right;
+width: 45%;
+`
+
 const NewsSentiment = ({ticker, companyNewsScore, sectorAverageNewsScore, bullishPercent, sectorAverageBullishPercent, bearishPercent, sectorAverageBearishPercent}) => {
-
-    const TitleLabel = styled.p`
-    font-family: 'PT Sans', serif;
-    margin-left: 2.5%;
-    margin-bottom: 0;
-    font-size: 3rem;
-    font-weight: bold;
-    `
-
-    const InfoLabelLeft = styled.div`
-    font-family: 'PT Sans', serif;
-    margin-left: 2.5%;
-    font-size: 1rem;
-    float: left;
-    width: 45%;
-    `
-
-    const InfoLabelRight = styled.div`
-    font-family: 'PT Sans', serif;
-    margin-left: 2.5%;
-    font-size: 1rem;
-    float: right;
-    width: 45%;
-    `
     
     return (  
         <>

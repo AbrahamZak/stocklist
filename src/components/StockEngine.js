@@ -1,11 +1,96 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import styled from 'styled-components';
 
 import StockView from './StockView/component'
 import NewsView from './NewsView/component'
 
-const StockEngine = () => {
+const ButtonHolder = styled.div`
+background-color: darkgray;
+display: flex; 
+justify-content: center;
+`
+const ButtonGroup = styled.button`
+background-color: white;
+border: 1px black;
+font-family: 'PT Sans', serif;
+font-size: 1rem;
+padding: 10px 70px; 
+cursor: pointer; 
+float: left; 
+
+&:hover {
+background-color: lightgray;
+}
+`
+
+const StockEngine = ({ticker}) => {
+    //Variable for current view
+    const[isFinancialView, setCurrentView] = useState(true);
+
+    //Functions to switch view when selected in view
+    function switchFinancials(){
+        setCurrentView(true)
+    }
+    function switchNews(){
+        setCurrentView(false)
+    }
+
+  //Get data from API based on ticker and fill our data
+  const getStockData = async(ticker) => {
+    const stockInfo = await fetch(
+      `https://finnhub.io/api/v1/stock/profile2?symbol=${ticker}`
+      );
+    const stockInfoJSON = await stockInfo.json();
+    const stockNews = await fetch(
+        `https://finnhub.io/api/v1/company-news?symbol=${ticker}&from=2020-05-01&to=2020-05-01&token=br8pn77rh5ral083irt0`
+        );
+      const stockNewsJSON = await stockNews.json();
+    const stockMajor = await fetch(
+        `https://finnhub.io/api/v1/major-development?symbol=${ticker}&token=br8pn77rh5ral083irt0`
+        );
+      const stockMajorJSON = await stockMajor.json();
+    const stockSentiment = await fetch(
+        `https://finnhub.io/api/v1/news-sentiment?symbol=${ticker}&token=br8pn77rh5ral083irt0`
+        );
+      const stockSentimentJSON = await stockSentiment.json();
+      const stockRelated = await fetch(
+        `https://finnhub.io/api/v1/stock/peers?symbol=${ticker}&token=br8pn77rh5ral083irt0`
+        );
+      const stockRelatedJSON = await stockRelated.json();
+      const stockRecommendations = await fetch(
+        `https://finnhub.io/api/v1/stock/recommendation?symbol=${ticker}&token=br8pn77rh5ral083irt0`
+        );
+      const stockRecommendationsJSON = await stockRecommendations.json();
+      const stockTarget = await fetch(
+        `https://finnhub.io/api/v1/stock/price-target?symbol=${ticker}&token=br8pn77rh5ral083irt0`
+        );
+      const stockTargetJSON = await stockTarget.json();
+      const stockEarnings = await fetch(
+        `https://finnhub.io/api/v1/calendar/earnings?from=2010-01-01&to=2020-03-15&symbol=${ticker}&token=br8pn77rh5ral083irt0`
+        );
+      const stockEarningsJSON = await stockEarnings.json();
+      const stockDaily = await fetch(
+        `https://finnhub.io/api/v1/quote?symbol=${ticker}&token=br8pn77rh5ral083irt0`
+        );
+      const stockDailyJSON = await stockDaily.json();
+      const stockCandle = await fetch(
+        `https://finnhub.io/api/v1/stock/candle?symbol=${ticker}&resolution=1&from=1572651390&to=1572910590&token=br8pn77rh5ral083irt0`
+        );
+      const stockCandleJSON = await stockCandle.json();
+      const stockTechnical = await fetch(
+        `https://finnhub.io/api/v1/scan/technical-indicator?symbol=${ticker}&resolution=D&token=br8pn77rh5ral083irt0`
+        );
+      const stockTechnicalJSON = await stockTechnical.json();
+       
+    setWeather({
+      temp: restJSON.main.temp,
+      city: restJSON.name,
+      condition: restJSON.weather[0].main,
+      country: restJSON.sys.country
+    });
+  };
+
     const basicInfo = {
         name: "Facebook",
         ticker: "FB",
@@ -16,41 +101,6 @@ const StockEngine = () => {
         openPrice: 280.05,
         prevClose: 276.05
     }
-    let bg = null;
-    if (basicInfo.change>=0){
-        bg = 'lightgreen';
-    }
-    else{
-        bg = '#ff644d';
-    }
-    const ButtonHolder = styled.div`
-    background-color: ${bg};
-    display: flex; 
-    justify-content: center;
-    `
-    const ButtonGroup = styled.button`
-    background-color: white;
-    border: 1px black;
-    font-family: 'PT Sans', serif;
-    font-size: 1rem;
-    padding: 10px 70px; 
-    cursor: pointer; 
-    float: left; 
-
-    &:not(:last-child) {
-    border-right: none; 
-    }
-
-    &:after {
-    content: "";
-    clear: both;
-    display: table;
-    }
-
-    &:hover {
-    background-color: lightgray;
-    }
-    `
 
     const earnings = {
         quarter: 1,
@@ -149,10 +199,11 @@ const StockEngine = () => {
     return (  
         <>
         <ButtonHolder>
-        <ButtonGroup>Financials</ButtonGroup>
-        <ButtonGroup>News</ButtonGroup>
+        <ButtonGroup onClick={switchFinancials}>Financials</ButtonGroup>
+        <ButtonGroup onClick={switchNews}>News</ButtonGroup>
         </ButtonHolder>
-        <StockView
+        {isFinancialView ? (
+        <StockView 
             basicInfo = {basicInfo}
             earnings = {earnings}
             related = {related}
@@ -161,12 +212,14 @@ const StockEngine = () => {
             priceTarget = {priceTarget}
             technicalAnalysis = {technicalAnalysis}
         />
+        ) : (
         <NewsView
             companyNews = {companyNews}
             majorDevelopments = {majorDevelopments}
             newsSentiment = {newsSentiment}
             newsBuzz = {newsBuzz}
         />
+        )}
         </>
     );
 }
