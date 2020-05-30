@@ -2,7 +2,7 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-const StockInfo = ({industry, marketCap, ipoDate, companyURL}) => {
+const StockTarget = ({targetHigh, targetLow, targetAvg}) => {
 
     const TitleLabel = styled.p`
     font-family: 'PT Sans', serif;
@@ -25,15 +25,14 @@ const StockInfo = ({industry, marketCap, ipoDate, companyURL}) => {
 
     return (  
         <>
-        <TitleLabel>Company Info:</TitleLabel>
+        <TitleLabel>Price Targets:</TitleLabel>
         <BodyText>
-        <p>Industry: {industry}</p>
-        <p>Market Cap: ${format(marketCap)}</p>
-        <p>IPO Date: {ipoDate}</p>
-        <p>Company Website: {companyURL}</p>
+        <p>Target High: ${format(targetHigh)}</p>
+        <p>Target Avg: ${format(targetAvg)}</p>
+        <p>Target Low: ${format(targetLow)}</p>
         </BodyText>
         </>
     );
 }
  
-export default StockInfo;
+export default StockTarget;
