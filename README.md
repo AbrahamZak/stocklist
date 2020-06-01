@@ -20,7 +20,7 @@ Finnhub API
 
 ## Progress
 Homepage (0%)\
-Search bar  and functionality (autocomplete searches)- 0%\
+Search bar  and functionality (auto complete searches)- 0%\
 Log in - 0%\
 \
 Login Page (0%)\
@@ -33,11 +33,11 @@ Design - 0%\
 Sign up functionality - 0%\
 Sign up error handling - 0%\
 \
-Individual Stock Page (20%)\
+Individual Stock Page (75%)\
 Design - 50%\
-Integration with stock API - 0%\
-See stock price and other stock data (earnings, company info, recommendations, price targets, technical indicator sentiment, related companies) - 0%\
-See latest news for stock (company news, major developments, news sentiment, sector news sentiment) - 0%\
+Integration with stock API - 100%\
+See stock price and other stock data (earnings, company info, recommendations, price targets, technical indicator sentiment, related companies) - 100%\
+See latest news for stock (company news, news sentiment, sector news sentiment) - 100%\
 Add stock to watchlist (when logged in) - 0%\
 \
 Profile page (when logged in) (0%)\

@@ -14,6 +14,9 @@ const BodyText = styled.div`
 font-family: 'PT Sans', serif;
 margin-left: 2.5%;
 font-size: 1rem;
+a{
+    color: black;
+}
 `
 
 const StockInfo = ({industry, marketCap, ipoDate, companyURL}) => {
@@ -29,7 +32,7 @@ const StockInfo = ({industry, marketCap, ipoDate, companyURL}) => {
         <p>Industry: {industry}</p>
         <p>Market Cap: ${format(marketCap)}</p>
         <p>IPO Date: {ipoDate}</p>
-        <p>Company Website: {companyURL}</p>
+        <p>Company Website: <a rel="noopener noreferrer" target="_blank" href={companyURL}>{companyURL}</a></p> 
         </BodyText>
         </>
     );

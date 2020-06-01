@@ -32,14 +32,14 @@ const NewsSentiment = ({ticker, companyNewsScore, sectorAverageNewsScore, bullis
         <>
         <TitleLabel>Sentiment Scores:</TitleLabel>
         <InfoLabelLeft>
-        <p>{ticker} News Score: %{companyNewsScore}</p>
-        <p>{ticker} Bullish Score: %{bullishPercent}</p>
-        <p>{ticker} Bearish Score: %{bearishPercent}</p>
+        <p>{ticker} News Score: {companyNewsScore}%</p>
+        <p>{ticker} Bullish Score: {bullishPercent}%</p>
+        <p>{ticker} Bearish Score: {bearishPercent}%</p>
         </InfoLabelLeft>
         <InfoLabelRight>
-        <p>Sector Average Score: %{sectorAverageNewsScore}</p>
-        <p>Sector Average Bull Score: %{sectorAverageBullishPercent}</p>
-        <p>Sector Average Bear Score: %{sectorAverageBearishPercent}</p>
+        <p>Sector Average Score: {sectorAverageNewsScore}%</p>
+        <p>Sector Average Bull Score: {sectorAverageBullishPercent}%</p>
+        <p>Sector Average Bear Score: {sectorAverageBearishPercent}%</p>
         </InfoLabelRight>
         </>
     );

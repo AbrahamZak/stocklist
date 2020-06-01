@@ -24,7 +24,7 @@ const NewsBuzz = ({articlesInLastWeek, weeklyAverage, buzzScore}) => {
         <BodyText>
         <p>Articles Posted (Past Week): {articlesInLastWeek}</p>
         <p>Weekly Average: {weeklyAverage}</p>
-        <p>Buzz Score: %{buzzScore}</p>
+        <p>Buzz Score: {buzzScore}%</p>
         </BodyText>
         </>
     );

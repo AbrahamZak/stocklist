@@ -3,7 +3,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 import NewsCompany from './NewsCompany'
-import NewsMajor from './NewsMajor'
 import NewsSentiment from './NewsSentiment'
 import NewsBuzz from './NewsBuzz'
 
@@ -24,7 +23,7 @@ const Background = styled.div`
     min-height: 100vh;
 `
 
-const NewsView = ({companyNews, majorDevelopments, newsSentiment, newsBuzz}) => {
+const NewsView = ({companyNews, newsSentiment, newsBuzz}) => {
 
     //Adjust background based on whether news sentiment is bullish or bearish
     let bg = null;
@@ -41,24 +40,21 @@ const NewsView = ({companyNews, majorDevelopments, newsSentiment, newsBuzz}) => 
             <NewsCompany
             companyNews = {companyNews}
             />
-            <NewsSentiment
-            ticker = {newsSentiment.ticker}
-            companyNewsScore = {newsSentiment.companyNewsScore * 100}
-            sectorAverageNewsScore = {newsSentiment.sectorAverageNewsScore * 100}
-            bullishPercent = {newsSentiment.bullishPercent * 100}
-            sectorAverageBullishPercent = {newsSentiment.sectorAverageBullishPercent * 100}
-            bearishPercent = {newsSentiment.bearishPercent * 100}
-            sectorAverageBearishPercent = {newsSentiment.sectorAverageBearishPercent * 100}
-            />
+        </WrapLeft>
+        <WrapRight>
             <NewsBuzz
             articlesInLastWeek = {newsBuzz.articlesInLastWeek}
             weeklyAverage = {newsBuzz.weeklyAverage}
-            buzzScore = {newsBuzz.buzzScore * 100}
+            buzzScore = {(newsBuzz.buzzScore * 100).toFixed(2)}
             />
-        </WrapLeft>
-        <WrapRight>
-            <NewsMajor
-            majorDevelopments = {majorDevelopments}
+            <NewsSentiment
+            ticker = {newsSentiment.ticker}
+            companyNewsScore = {(newsSentiment.companyNewsScore * 100).toFixed(2)}
+            sectorAverageNewsScore = {(newsSentiment.sectorAverageNewsScore * 100).toFixed(2)}
+            bullishPercent = {(newsSentiment.bullishPercent * 100).toFixed(2)}
+            sectorAverageBullishPercent = {(newsSentiment.sectorAverageBullishPercent * 100).toFixed(2)}
+            bearishPercent = {(newsSentiment.bearishPercent * 100).toFixed(2)}
+            sectorAverageBearishPercent = {(newsSentiment.sectorAverageBearishPercent * 100).toFixed(2)}
             />
         </WrapRight>
         </Background>

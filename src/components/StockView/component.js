@@ -53,10 +53,10 @@ const StockView = ({basicInfo, companyInfo, earnings, priceTarget, recommendatio
             change={basicInfo.change}/>
             <StockChart/>
             <StockDaily 
-            todayHigh = {basicInfo.todayHigh} 
-            todayLow = {basicInfo.todayLow} 
-            openPrice = {basicInfo.todayLow} 
-            prevClose = {basicInfo.prevClose}/>
+            todayHigh = {basicInfo.todayHigh.toFixed(2)} 
+            todayLow = {basicInfo.todayLow.toFixed(2)} 
+            openPrice = {basicInfo.todayLow.toFixed(2)} 
+            prevClose = {basicInfo.prevClose.toFixed(2)}/>
             <StockInfo 
             industry = {companyInfo.industry}
             marketCap = {companyInfo.marketCap}
@@ -72,15 +72,15 @@ const StockView = ({basicInfo, companyInfo, earnings, priceTarget, recommendatio
             quarter = {earnings.quarter} 
             year = {earnings.year} 
             date = {earnings.date} 
-            epsEstimate = {earnings.epsEstimate}  
-            epsActual = {earnings.epsActual} 
+            epsEstimate = {earnings.epsEstimate.toFixed(2)}  
+            epsActual = {earnings.epsActual.toFixed(2)} 
             revEstimate = {earnings.revEstimate} 
             revActual = {earnings.revActual} 
             />
             <StockTarget
-            targetHigh = {priceTarget.targetHigh}
-            targetLow = {priceTarget.targetLow}
-            targetAvg = {priceTarget.targetAvg}
+            targetHigh = {priceTarget.targetHigh.toFixed(2)}
+            targetLow = {priceTarget.targetLow.toFixed(2)}
+            targetAvg = {priceTarget.targetAvg.toFixed(2)}
             />
             <StockRecommend
             buy = {recommendations.buy}
