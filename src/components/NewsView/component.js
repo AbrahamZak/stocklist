@@ -23,6 +23,7 @@ const Background = styled.div`
     min-height: 100vh;
 `
 
+//NewsView component, the main component for the news side of the StockEngine
 const NewsView = ({companyNews, newsSentiment, newsBuzz}) => {
 
     //Adjust background based on whether news sentiment is bullish or bearish

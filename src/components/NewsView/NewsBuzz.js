@@ -16,6 +16,7 @@ margin-left: 2.5%;
 font-size: 1rem;
 `
 
+//News Buzz component
 const NewsBuzz = ({articlesInLastWeek, weeklyAverage, buzzScore}) => {
 
     return (  

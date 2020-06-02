@@ -9,6 +9,7 @@ margin-top: 0;
 font-size: 2rem;
 `
 
+//Stock price and daily change
 const StockPrice = ({price, change}) => {
 
     //Add a sign to positive changes

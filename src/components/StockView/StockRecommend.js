@@ -33,6 +33,7 @@ margin-left: 2.5%;
 font-size: 1rem;
 `
 
+//Stock recommendations, taken from API
 const StockRecommend = ({buy, sell, hold, strongBuy, strongSell}) => {
 
     return ( 

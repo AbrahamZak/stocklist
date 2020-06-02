@@ -18,6 +18,7 @@ a{
 }
 `
 
+//The company news component, displays all news articles from API
 const NewsCompany = ({companyNews}) => {
 
     return ( 

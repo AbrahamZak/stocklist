@@ -10,6 +10,7 @@ font-size: 3rem;
 font-weight: bold;
 `
 
+//Simply the stock name and ticker
 const StockName = ({name, ticker}) => {
 
     return (  

@@ -32,6 +32,7 @@ li:last-child::after {
 }
 `
 
+//Displays related stocks to currently selected ticker
 const StockRelated = ({related}) => {
 
     return (  

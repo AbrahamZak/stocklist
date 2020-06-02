@@ -26,6 +26,7 @@ float: right;
 width: 45%;
 `
 
+//News Sentiment component
 const NewsSentiment = ({ticker, companyNewsScore, sectorAverageNewsScore, bullishPercent, sectorAverageBullishPercent, bearishPercent, sectorAverageBearishPercent}) => {
     
     return (  

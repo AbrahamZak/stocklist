@@ -33,6 +33,7 @@ margin-left: 2.5%;
 font-size: 1rem;
 `
 
+//Earnings portion of a stock's page
 const StockEarnings = ({quarter, year, date, epsEstimate, epsActual, revEstimate, revActual}) => {
 
     //Convert large numbers to string with commas

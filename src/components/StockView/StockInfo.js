@@ -19,6 +19,7 @@ a{
 }
 `
 
+//Company info for StockView
 const StockInfo = ({industry, marketCap, ipoDate, companyURL}) => {
 
     //Convert large numbers to string with commas

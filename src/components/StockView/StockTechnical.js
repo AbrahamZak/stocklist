@@ -16,6 +16,7 @@ margin-left: 2.5%;
 font-size: 1rem;
 `
 
+//Technical indicators from API
 const StockTechnical = ({buy, sell, neutral, signal}) => {
 
     return (  

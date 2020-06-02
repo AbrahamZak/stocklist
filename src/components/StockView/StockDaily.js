@@ -18,6 +18,7 @@ float: right;
 width: 45%;
 `
 
+//Daily stock information
 const StockDaily = ({todayHigh, todayLow, openPrice, prevClose}) => {
 
     //Convert large numbers to string with commas

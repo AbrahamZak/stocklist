@@ -16,6 +16,7 @@ margin-left: 2.5%;
 font-size: 1rem;
 `
 
+//Target prices from API
 const StockTarget = ({targetHigh, targetLow, targetAvg}) => {
 
     //Convert large numbers to string with commas

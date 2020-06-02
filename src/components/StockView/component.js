@@ -30,6 +30,7 @@ const Background = styled.div`
     min-height: 100vh;
 `
 
+//StockView component, main component for financial data for StockEngine
 const StockView = ({basicInfo, companyInfo, earnings, priceTarget, recommendations, technicalAnalysis, related}) => {
     
     //Adjust background based on whether daily is up or down
