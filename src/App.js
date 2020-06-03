@@ -1,21 +1,31 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 
-import StockEngine from './components/StockEngine'
-import Homepage from './components/Homepage'
-import Navigation from './components/Navigation'
+import "./App.css";
+
+import StockEngine from "./components/StockEngine";
+import Homepage from "./components/Homepage";
+import Navigation from "./components/Navigation";
 
 function App() {
   return (
+    <Router>
     <div className="App">
-      <Navigation/>
-      <Homepage/>
+      <Navigation />
+      <Switch>
+        <Route path="/" exact component={Homepage} />
+        <Route path="/stock/:ticker" component={StockEngine} />
+      </Switch>
     </div>
+    </Router>
   );
 }
 
 export default App;
 
 /*
-      <StockEngine ticker="MSFT"/>
+      <Navigation />
+      
+      <Homepage />
+       <StockEngine ticker="MSFT"/>
 */

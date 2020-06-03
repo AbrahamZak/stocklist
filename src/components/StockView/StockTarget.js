@@ -1,38 +1,37 @@
-import React from 'react';
+import React from "react";
 
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const TitleLabel = styled.p`
-font-family: 'PT Sans', serif;
-margin-left: 2.5%;
-margin-bottom: 0;
-font-size: 3rem;
-font-weight: bold;
-`
+  font-family: "PT Sans", serif;
+  margin-left: 2.5%;
+  margin-bottom: 0;
+  font-size: 3rem;
+  font-weight: bold;
+`;
 
 const BodyText = styled.div`
-font-family: 'PT Sans', serif;
-margin-left: 2.5%;
-font-size: 1rem;
-`
+  font-family: "PT Sans", serif;
+  margin-left: 2.5%;
+  font-size: 1rem;
+`;
 
 //Target prices from API
-const StockTarget = ({targetHigh, targetLow, targetAvg}) => {
+const StockTarget = ({ targetHigh, targetLow, targetAvg }) => {
+  //Convert large numbers to string with commas
+  const format = (num) =>
+    String(num).replace(/(?<!\..*)(\d)(?=(?:\d{3})+(?:\.|$))/g, "$1,");
 
-    //Convert large numbers to string with commas
-    const format = num => 
-    String(num).replace(/(?<!\..*)(\d)(?=(?:\d{3})+(?:\.|$))/g, '$1,')
-       
-    return (  
-        <>
-        <TitleLabel>Price Targets:</TitleLabel>
-        <BodyText>
+  return (
+    <>
+      <TitleLabel>Price Targets:</TitleLabel>
+      <BodyText>
         <p>Target High: ${format(targetHigh)}</p>
         <p>Target Avg: ${format(targetAvg)}</p>
         <p>Target Low: ${format(targetLow)}</p>
-        </BodyText>
-        </>
-    );
-}
- 
+      </BodyText>
+    </>
+  );
+};
+
 export default StockTarget;
