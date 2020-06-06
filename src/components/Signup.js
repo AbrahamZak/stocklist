@@ -12,7 +12,7 @@ const Background = styled.section`
 
 const Wrapper = styled.div`
   width: 400px;
-  height: 50vh;
+  height: 64vh;
   margin: 0 auto;
   z-index: -10;
   background: black;
@@ -78,11 +78,11 @@ input{
 }
 `
 
-const Login = () => {
+const Signup = () => {
     return (  
         <Background>
             <Wrapper>
-               <Header>Login</Header>
+               <Header>Signup</Header>
                <FormDesign>
                 <label>Email
                 <input name="email" placeholder="Email" type="email" />
@@ -90,11 +90,14 @@ const Login = () => {
                  <label>Password
                   <input name="password" placeholder="******" type="password" autoComplete="on"/>
                   </label>
-               <SubmitButton type="submit">Login</SubmitButton>                                                      
+                  <label>Confirm Password
+                  <input name="confirmPassword" placeholder="******" type="password" autoComplete="on"/>
+                  </label>
+               <SubmitButton type="submit">Signup</SubmitButton>                                                      
               </FormDesign>
             </Wrapper>
         </Background>
     );
 }
  
-export default Login;
+export default Signup;

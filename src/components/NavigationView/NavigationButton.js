@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom"
 
 import styled from "styled-components";
 
@@ -17,7 +18,7 @@ const NavButton = styled.button`
   float: right;
   transition-duration: 0.4s;
   cursor: pointer;
-
+ 
   &:hover {
     background-color: black;
     color: white;
@@ -25,8 +26,8 @@ const NavButton = styled.button`
 `;
 
 //Button design for navigation bar, takes in text for button and router directions
-const NavigationButton = ({ buttonText }) => {
-  return <NavButton>{buttonText}</NavButton>;
+const NavigationButton = ({ buttonText, history }) => {
+  return <NavLink to = {"/" + buttonText}><NavButton>{buttonText}</NavButton></NavLink>
 };
 
 export default NavigationButton;

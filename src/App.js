@@ -7,6 +7,7 @@ import StockEngine from "./components/StockEngine";
 import Homepage from "./components/Homepage";
 import Navigation from "./components/Navigation";
 import Login from "./components/Login";
+import Signup from "./components/Signup";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Switch>
         <Route path="/" exact component={Homepage} />
         <Route path="/login" exact component={Login} />
+        <Route path="/signup" exact component={Signup} />
         <Route path="/stock/:ticker" component={StockEngine} />
       </Switch>
     </div>

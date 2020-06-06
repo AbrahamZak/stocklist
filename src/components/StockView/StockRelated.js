@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom"
 
 import styled from "styled-components";
 
@@ -11,14 +12,26 @@ const TitleLabel = styled.p`
 `;
 
 const CommaList = styled.ul`
-  font-family: "PT Sans", serif;
   margin-left: 2.5%;
-  font-size: 1rem;
   display: inline;
   list-style: none;
   padding: 0px;
 
+  a {
+    text-decoration: none;
+  }
+  
+  a:link, a:visited {
+    color: white;
+  }
+  
+  a:hover {
+    font-weight: bold;
+  }
+
   li {
+    font-size: 1rem;
+    font-family: "PT Sans", serif;
     display: inline;
   }
 
@@ -38,7 +51,7 @@ const StockRelated = ({ related }) => {
       <TitleLabel>Related Companies:</TitleLabel>
       <CommaList>
         {related.map((company, index) => (
-          <li key={index}>{company}</li>
+          <li key={index}><NavLink to = {"/stock/" + company}>{company}</NavLink></li>
         ))}
       </CommaList>
     </>

@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom"
 
 import styled from "styled-components";
 
@@ -14,15 +15,16 @@ const Background = styled.div`
 
 const Title = styled.p`
   font-family: "PT Sans", serif;
-  color: black;
-  text-decoration: none;
   font-size: 1.4rem;
   font-weight: bold;
   margin-left: 10px;
   margin-top: 0px;
   padding-top: 15px;
-  cursor: pointer;
 
+  a{
+    color: black;
+    text-decoration: none;
+  }
 `;
 
 //This is the site's navigation bar which includes the title, the search bar, and log/signup buttons
@@ -30,7 +32,7 @@ const Navigation = () => {
   return (
     <Background>
       <Title>
-      StockList
+      <NavLink to = "/">StockList</NavLink>
         <NavigationButton buttonText={"Login"} />
         <NavigationButton buttonText={"Signup"} />
         <NavigationSearchInput />

@@ -38,7 +38,7 @@ const Home = () => {
         <p>Create an account to add stocks to your watchlist.</p>
         <p>
           Keep track of earnings, company info, recommendations, price targets,
-          technical indicator sentiment, and see related companies
+          technical indicator sentiment, and view related companies
         </p>
         <p>
           Also follow company news, buzz scores, news sentiment, and sector news

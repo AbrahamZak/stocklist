@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import StockView from "./StockView/component";
 import NewsView from "./NewsView/component";
+import Loading from "./Loading"
 
 const Wrapper = styled.div`
   position: relative;
@@ -32,9 +33,12 @@ const ButtonGroup = styled.button`
 `;
 
 const StockEngine = (props) => {
+  //Get ticker from params
   let ticker = props.match.params.ticker
   //Variable for current view
   const [isFinancialView, setCurrentView] = useState(true);
+  //Variable for if stock data is loading
+  const [isLoading, setLoading] = useState(true);
 
   //Functions to switch view when selected in view
   function switchFinancials() {
@@ -46,6 +50,8 @@ const StockEngine = (props) => {
 
   //Get data from API based on ticker and fill our data
   const getStockData = async (ticker) => {
+    //Loading begins
+    setLoading(true);
     //Get and store all neccessary API calls in JSON format
     const stockInfo = await fetch(
       `https://finnhub.io/api/v1/stock/profile2?symbol=${ticker}&token=br8pn77rh5ral083irt0`
@@ -229,100 +235,87 @@ const StockEngine = (props) => {
     } catch (err) {
       console.log("Could not set news buzz");
     }
+
+    //Loading completed
+    setLoading(false);
   };
 
-  //All of our site data, seperated by component, sample data included
+  //All of our site data, seperated by component, initialized to null or 0
   const [basicInfo, setBasicInfo] = useState({
-    name: "Facebook",
-    ticker: "FB",
-    price: 280.65,
-    change: -0.35,
-    todayHigh: 281.85,
-    todayLow: 279.5,
-    openPrice: 280.05,
-    prevClose: 276.05,
+    name: null,
+    ticker: null,
+    price: 0,
+    change: 0,
+    todayHigh: 0,
+    todayLow: 0,
+    openPrice: 0,
+    prevClose: 0,
   });
 
   const [earnings, setEarnings] = useState({
-    quarter: 1,
-    date: "01-01-2020",
-    year: 2020,
-    epsEstimate: 2.07,
-    epsActual: 2.09,
-    revEstimate: 200000000,
-    revActual: 210000000,
+    quarter: 0,
+    date: null,
+    year: null,
+    epsEstimate: 0,
+    epsActual: 0,
+    revEstimate: 0,
+    revActual: 0,
   });
 
   const [related, setRelated] = useState({
-    related: ["MSFT", "FB", "GOOG"],
+    related: [null],
   });
 
   const [companyInfo, setCompanyInfo] = useState({
-    industry: "Technology",
-    marketCap: 500000000,
-    ipoDate: "01-01-2020",
-    companyURL: "https://apple.com",
+    industry: null,
+    marketCap: 0,
+    ipoDate: null,
+    companyURL: null,
   });
 
   const [recommendations, setRecommendations] = useState({
-    buy: 5,
-    sell: 2,
-    strongBuy: 7,
-    strongSell: 6,
-    hold: 5,
+    buy: null,
+    sell: null,
+    strongBuy: null,
+    strongSell: null,
+    hold: null,
   });
 
   const [priceTarget, setPriceTarget] = useState({
-    targetHigh: 310.22,
-    targetLow: 302.55,
-    targetAvg: 307.33,
+    targetHigh: null,
+    targetLow: null,
+    targetAvg: null,
   });
 
   const [technicalAnalysis, setTechnicalAnalysis] = useState({
-    buy: 5,
-    sell: 2,
-    neutral: 2,
-    signal: "Buy",
+    buy: null,
+    sell: null,
+    neutral: null,
+    signal: null,
   });
 
   const [companyNews, setCompanyNews] = useState([
     {
-      date: "01-01-2020",
-      headline:
-        "Apple Confirms Serious Problem Affecting Mac, iPad, iPhone Users",
-      link:
-        "https://www.forbes.com/sites/gordonkelly/2020/04/28/apple-iphone-ios-13-problem-crash-security-stability-macos-ipad-iphone-users/",
-    },
-    {
-      date: "01-05-2020",
-      headline:
-        "Apple Confirms Serious Problem Affecting Mac, iPad, iPhone Users",
-      link:
-        "https://www.forbes.com/sites/gordonkelly/2020/04/28/apple-iphone-ios-13-problem-crash-security-stability-macos-ipad-iphone-users/",
-    },
-    {
-      date: "01-10-2020",
-      headline:
-        "Apple Confirms Serious Problem Affecting Mac, iPad, iPhone Users",
-      link:
-        "https://www.forbes.com/sites/gordonkelly/2020/04/28/apple-iphone-ios-13-problem-crash-security-stability-macos-ipad-iphone-users/",
-    },
+      date: null,
+      headline: null,
+      link: null
+    }
   ]);
 
   const [newsSentiment, setNewsSentiment] = useState({
-    ticker: "AAPL",
-    companyNewsScore: 0.7352,
-    sectorAverageNewsScore: 0.519,
-    bullishPercent: 0.875,
-    sectorAverageBullishPercent: 0.62,
-    bearishPercent: 0.125,
-    sectorAverageBearishPercent: 0.38,
+    ticker: null,
+    companyNewsScore: 0,
+    sectorAverageNewsScore: 0,
+    bullishPercent: 0,
+    sectorAverageBullishPercent: 0,
+    bearishPercent: 0,
+    sectorAverageBearishPercent: 0,
   });
 
   const [newsBuzz, setNewsBuzz] = useState({
-    articlesInLastWeek: 136,
-    weeklyAverage: 208.5,
-    buzzScore: 0.6522,
+    articlesInLastWeek: 0,
+    weeklyAverage: 0,
+    buzzScore: 0,
   });
 
   //Get the stock data on page load
@@ -330,13 +323,19 @@ const StockEngine = (props) => {
     getStockData(ticker);
   }, [ticker]);
 
+  if (isLoading){
+    return(
+      <Loading/>
+    )
+  }
+
   return (
     <Wrapper>
       <ButtonHolder>
         <ButtonGroup onClick={switchFinancials}>Financials</ButtonGroup>
         <ButtonGroup onClick={switchNews}>News</ButtonGroup>
       </ButtonHolder>
-      {isFinancialView ? (
+      {isFinancialView ? 
         <StockView
           basicInfo={basicInfo}
           earnings={earnings}
@@ -346,13 +345,13 @@ const StockEngine = (props) => {
           priceTarget={priceTarget}
           technicalAnalysis={technicalAnalysis}
         />
-      ) : (
+       : 
         <NewsView
           companyNews={companyNews}
           newsSentiment={newsSentiment}
           newsBuzz={newsBuzz}
         />
-      )}
+      }
     </Wrapper>
   );
 };
