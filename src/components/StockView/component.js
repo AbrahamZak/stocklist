@@ -29,6 +29,7 @@ const Background = styled.div`
   background-color: black;
   min-height: 100vh;
   color: white;
+  padding-bottom: 35px;
 `;
 
 //StockView component, main component for financial data for StockEngine

@@ -6,13 +6,11 @@ import styled from "styled-components";
 import * as data from "../../data/search.json";
 
 const Dropdown = styled.div`
+  margin-top: 5px;
   position: absolute;
   border: 1px solid white;
   width: 200px;
   background-color: white;
-  display: block;
-  margin-top: -10px;
-  margin-left: 41%;
   z-index: 1000;
   a:hover,
   a:active,
@@ -33,20 +31,23 @@ const DropdownResult = styled.p`
   }
 `;
 
-const Input = styled.input`
+const Input = styled.input` 
+  margin-top: 11px;
   font-family: "PT Sans", serif;
   padding: 5px 10px;
   color: black;
   background: white;
   border-color: black;
   border-radius: 3px;
+`;
+
+const Wrapper = styled.div`
   float: right;
-  margin-top: 10px;
   margin-right: 25%;
   @media only screen and (max-width: 800px) {
     margin-right: 1%;
   }
-`;
+`
 
 //Our search bar for navigation, includes autocomplete while typing with data of all company names and tickers in database
 const NavigationSearchInput = () => {
@@ -66,22 +67,24 @@ const NavigationSearchInput = () => {
   //If the query is blank only show the input, update our query as input changes
   if (query === "") {
     return (
+      <Wrapper>
       <Input
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        placeholder="Enter ticker or company"
+        placeholder="Enter company name..."
         type="text"
       />
+      </Wrapper>
     );
   }
 
   //Otherwise show the dropdown, once a link is clicked we set our query to blank to hide it again
   return (
-    <>
+    <Wrapper>
       <Input
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        placeholder="Enter ticker or company"
+        placeholder="Enter company name..."
         type="text"
       />
       <Dropdown>
@@ -97,7 +100,7 @@ const NavigationSearchInput = () => {
           </NavLink>
         ))}
       </Dropdown>
-    </>
+    </Wrapper>
   );
 };
 

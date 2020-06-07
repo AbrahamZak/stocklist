@@ -35,7 +35,7 @@ const Navigation = () => {
       <Title><NavLink to = "/">StockList</NavLink></Title>
         <NavigationButton buttonText={"Login"} />
         <NavigationButton buttonText={"Signup"} />
-        <NavigationSearchInput />
+        <NavigationSearchInput/>
     </Background>
   );
 };
