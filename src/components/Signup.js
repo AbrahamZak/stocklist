@@ -39,7 +39,7 @@ const SubmitButton = styled.button`
   border-radius: 5px;
   border-color: white;
   color: white;
-  padding: 8px 40%;
+  padding: 8px 39%;
   font-size: 1rem;
   font-weight: bold;
   text-align: center;

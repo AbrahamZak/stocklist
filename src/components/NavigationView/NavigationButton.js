@@ -12,7 +12,7 @@ const NavButton = styled.button`
   color: black;
   padding: 5px 25px;
   margin-right: 1%;
-  margin-top: -3px;
+  margin-top: 10px;
   font-size: 1rem;
   font-weight: bold;
   float: right;
@@ -26,7 +26,7 @@ const NavButton = styled.button`
 `;
 
 //Button design for navigation bar, takes in text for button and router directions
-const NavigationButton = ({ buttonText, history }) => {
+const NavigationButton = ({ buttonText }) => {
   return <NavLink to = {"/" + buttonText}><NavButton>{buttonText}</NavButton></NavLink>
 };
 

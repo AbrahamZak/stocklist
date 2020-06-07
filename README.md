@@ -19,8 +19,8 @@ React frontend
 Finnhub API
 
 ## Progress
-Homepage (75%)\
-Search bar  and functionality (auto complete searches)- 50%\
+Homepage (100%)\
+Search bar  and functionality (auto complete searches)- 100%\
 Log in/ signup buttons - 100%\
 \
 Login Page (50%)\

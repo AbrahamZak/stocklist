@@ -14,6 +14,7 @@ const Background = styled.div`
 `;
 
 const Title = styled.p`
+  display: inline-block;
   font-family: "PT Sans", serif;
   font-size: 1.4rem;
   font-weight: bold;
@@ -31,12 +32,10 @@ const Title = styled.p`
 const Navigation = () => {
   return (
     <Background>
-      <Title>
-      <NavLink to = "/">StockList</NavLink>
+      <Title><NavLink to = "/">StockList</NavLink></Title>
         <NavigationButton buttonText={"Login"} />
         <NavigationButton buttonText={"Signup"} />
         <NavigationSearchInput />
-      </Title>
     </Background>
   );
 };

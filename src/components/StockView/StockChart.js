@@ -10,7 +10,7 @@ const Chart = styled.div`
 
 //The Stock Chart is created by taking the daily candlesticks from the API and deriving a chart from it
 const StockChart = () => {
-  return <Chart>Stock Chart</Chart>;
+  return <Chart>Stock Chart - IN DEVELOPMENT</Chart>;
 };
 
 export default StockChart;

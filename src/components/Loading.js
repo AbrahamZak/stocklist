@@ -11,7 +11,7 @@ const Background = styled.section`
 
 const Header = styled.p`
   margin-top: 0px;
-  padding-top: 30%;
+  padding-top: 20%;
   font-family: "PT Sans", serif;
   color: white;
   text-align: center;
