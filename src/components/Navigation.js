@@ -8,8 +8,7 @@ import NavigationSearchInput from "./NavigationView/NavigationSearchInput";
 
 const Background = styled.div`
   width: 100%;
-  height: 9vh;
-  z-index: -10;
+  height: 57px;
   background: white;
 `;
 

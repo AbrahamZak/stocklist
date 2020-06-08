@@ -52,6 +52,12 @@ Remove Stock from watchlist - 0%\
 Mobile Adjustments (0%)\
 Fix design for mobile experience - 0%\
 Other mobile tweeks - 0%\
+\
+Backend (50%)\
+Set up MongoDB database (100%)\
+Develop backend login server / watchlist API (100%)\
+Deploy Server (0%)\
+Connect to React Frontend (0%)
 
 ## Known Issues
 Interactive chart doesn't dynamically resize

@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const Background = styled.section`
   width: 100%;
-  height: 91vh;
+  height: 100vh;
   z-index: -100;
   background: black;
 `;

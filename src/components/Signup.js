@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const Background = styled.section`
   width: 100%;
-  height: 91vh;
+  height: 100vh;
   z-index: -100;
   background: black;
   overflow: auto;
@@ -12,7 +12,7 @@ const Background = styled.section`
 
 const Wrapper = styled.div`
   width: 400px;
-  height: 64vh;
+  height: 415px;
   margin: 0 auto;
   z-index: -10;
   background: black;
