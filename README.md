@@ -1,12 +1,12 @@
 # StockList
-Enables users to search information about stocks (company information, financial data, sentiment, news), create accounts, add stocks to a watchlist, and more. (created with React and the Finnhub API)
+Enables users to search information about stocks (company information, financial data, sentiment, news), view an interactive chart, create accounts, add stocks to a watchlist, and more. (created with React and the Finnhub API)
 
 (stocklist.abrahamzakharov.com)\
 This project was created to display my development skills as well as my interest in financial markets.
 
 ## Features
 
-Allows for the searching of stocks by name/ticker and displays information for stock \
+Allows for the searching of stocks by name/ticker and displays an interactive chart and information for stock \
 Sign up for an account and have a personal profile page displaying your watchlist \
 Add stocks to a watchlist
 
@@ -16,7 +16,8 @@ React frontend
 
 ## Tools/APIs Used
 
-Finnhub API
+Finnhub API \
+TradingView Lightweight Charts Library
 
 ## Progress
 Homepage (100%)\
@@ -41,6 +42,7 @@ See stock price and other stock data (earnings, company info, recommendations, p
 See latest news for stock (company news, buzz scores, news sentiment, sector news sentiment) - 100%\
 See related stocks and click on any to navigate to that stock's page - 100%\
 Add stock to watchlist (when logged in) - 0%\
+Interactive stock chart - 50%\
 \
 Profile page (when logged in) (0%)\
 Design - 0%\
@@ -52,4 +54,4 @@ Fix design for mobile experience - 0%\
 Other mobile tweeks - 0%\
 
 ## Known Issues
-Need to load from API with dates according to current date
+Interactive chart doesn't dynamically resize

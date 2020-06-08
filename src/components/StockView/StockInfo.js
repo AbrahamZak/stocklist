@@ -21,16 +21,13 @@ const BodyText = styled.div`
 
 //Company info for StockView
 const StockInfo = ({ industry, marketCap, ipoDate, companyURL }) => {
-  //Convert large numbers to string with commas
-  const format = (num) =>
-    String(num).replace(/(?<!\..*)(\d)(?=(?:\d{3})+(?:\.|$))/g, "$1,");
 
   return (
     <>
       <TitleLabel>Company Info:</TitleLabel>
       <BodyText>
         <p>Industry: {industry}</p>
-        <p>Market Cap: ${format(marketCap)}</p>
+        <p>Market Cap: ${marketCap}</p>
         <p>IPO Date: {ipoDate}</p>
         <p>
           Company Website:{" "}

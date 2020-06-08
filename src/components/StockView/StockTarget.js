@@ -18,17 +18,14 @@ const BodyText = styled.div`
 
 //Target prices from API
 const StockTarget = ({ targetHigh, targetLow, targetAvg }) => {
-  //Convert large numbers to string with commas
-  const format = (num) =>
-    String(num).replace(/(?<!\..*)(\d)(?=(?:\d{3})+(?:\.|$))/g, "$1,");
 
   return (
     <>
       <TitleLabel>Price Targets:</TitleLabel>
       <BodyText>
-        <p>Target High: ${format(targetHigh)}</p>
-        <p>Target Avg: ${format(targetAvg)}</p>
-        <p>Target Low: ${format(targetLow)}</p>
+        <p>Target High: ${targetHigh}</p>
+        <p>Target Avg: ${targetAvg}</p>
+        <p>Target Low: ${targetLow}</p>
       </BodyText>
     </>
   );

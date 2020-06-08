@@ -33,31 +33,33 @@ const Background = styled.div`
 `;
 
 //StockView component, main component for financial data for StockEngine
-const StockView = ({
-  basicInfo,
-  companyInfo,
-  earnings,
-  priceTarget,
-  recommendations,
-  technicalAnalysis,
-  related,
-}) => {
+const StockView = ({basicInfo, companyInfo, earnings, priceTarget, recommendations, technicalAnalysis, related, candles}) => {
+
+  //Convert large numbers to string with commas
+  const format = (num) =>
+    Number(parseInt(num)).toLocaleString('en');
+
+  //Convert large numbers to string with commas and 2 decimals figures
+  const formatDecimal = (num) =>
+    Number(parseFloat(num).toFixed(2)).toLocaleString('en', {
+    minimumFractionDigits: 2
+  });
 
   return (
     <Background>
       <WrapLeft>
         <StockName name={basicInfo.name} ticker={basicInfo.ticker} />
-        <StockPrice price={basicInfo.price} change={basicInfo.change} />
-        <StockChart />
+        <StockPrice price={formatDecimal(basicInfo.price)} change={basicInfo.change} />
+        <StockChart candles = {candles}/>
         <StockDaily
-          todayHigh={basicInfo.todayHigh.toFixed(2)}
-          todayLow={basicInfo.todayLow.toFixed(2)}
-          openPrice={basicInfo.todayLow.toFixed(2)}
-          prevClose={basicInfo.prevClose.toFixed(2)}
+          todayHigh={formatDecimal(basicInfo.todayHigh)}
+          todayLow={formatDecimal(basicInfo.todayLow)}
+          openPrice={formatDecimal(basicInfo.todayLow)}
+          prevClose={formatDecimal(basicInfo.prevClose)}
         />
         <StockInfo
           industry={companyInfo.industry}
-          marketCap={companyInfo.marketCap}
+          marketCap={format(companyInfo.marketCap)}
           ipoDate={companyInfo.ipoDate}
           companyURL={companyInfo.companyURL}
         />
@@ -68,15 +70,15 @@ const StockView = ({
           quarter={earnings.quarter}
           year={earnings.year}
           date={earnings.date}
-          epsEstimate={earnings.epsEstimate.toFixed(2)}
-          epsActual={earnings.epsActual.toFixed(2)}
-          revEstimate={earnings.revEstimate}
-          revActual={earnings.revActual}
+          epsEstimate={formatDecimal(earnings.epsEstimate)}
+          epsActual={formatDecimal(earnings.epsActual)}
+          revEstimate={format(earnings.revEstimate)}
+          revActual={format(earnings.revActual)}
         />
         <StockTarget
-          targetHigh={priceTarget.targetHigh.toFixed(2)}
-          targetLow={priceTarget.targetLow.toFixed(2)}
-          targetAvg={priceTarget.targetAvg.toFixed(2)}
+          targetHigh={formatDecimal(priceTarget.targetHigh)}
+          targetLow={formatDecimal(priceTarget.targetLow)}
+          targetAvg={formatDecimal(priceTarget.targetAvg)}
         />
         <StockRecommend
           buy={recommendations.buy}

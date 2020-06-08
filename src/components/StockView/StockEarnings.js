@@ -43,9 +43,6 @@ const StockEarnings = ({
   revEstimate,
   revActual,
 }) => {
-  //Convert large numbers to string with commas
-  const format = (num) =>
-    String(num).replace(/(?<!\..*)(\d)(?=(?:\d{3})+(?:\.|$))/g, "$1,");
 
   return (
     <>
@@ -55,11 +52,11 @@ const StockEarnings = ({
       <BodyText>Date: {date}</BodyText>
       <InfoLabelLeft>
         <p>EPS Estimate: ${epsEstimate}</p>
-        <p>Revenue Estimate: ${format(revEstimate)}</p>
+        <p>Revenue Estimate: ${revEstimate}</p>
       </InfoLabelLeft>
       <InfoLabelRight>
         <p>EPS Actual: ${epsActual}</p>
-        <p>Revenue Actual: ${format(revActual)}</p>
+        <p>Revenue Actual: ${revActual}</p>
       </InfoLabelRight>
     </>
   );

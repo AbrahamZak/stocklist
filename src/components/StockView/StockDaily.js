@@ -20,19 +20,16 @@ const InfoLabelRight = styled.div`
 
 //Daily stock information
 const StockDaily = ({ todayHigh, todayLow, openPrice, prevClose }) => {
-  //Convert large numbers to string with commas
-  const format = (num) =>
-    String(num).replace(/(?<!\..*)(\d)(?=(?:\d{3})+(?:\.|$))/g, "$1,");
 
   return (
     <>
       <InfoLabelLeft>
-        <p>Today's High: ${format(todayHigh)}</p>
-        <p>Today's Low: ${format(todayLow)}</p>
+        <p>Today's High: ${todayHigh}</p>
+        <p>Today's Low: ${todayLow}</p>
       </InfoLabelLeft>
       <InfoLabelRight>
-        <p>Open: ${format(openPrice)}</p>
-        <p>Previous Close: ${format(prevClose)}</p>
+        <p>Open: ${openPrice}</p>
+        <p>Previous Close: ${prevClose}</p>
       </InfoLabelRight>
     </>
   );

@@ -28,8 +28,7 @@ const StockPrice = ({ price, change }) => {
 
   return (
     <PriceLabel changeColor={changeColor}>
-      ${price} ({sign}
-      {change}%)
+      ${price} ({sign}{change}%)
     </PriceLabel>
   );
 };

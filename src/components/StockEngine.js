@@ -58,8 +58,35 @@ const StockEngine = (props) => {
     );
     const stockInfoJSON = await stockInfo.json();
 
+    //Get today's date
+    const today = new Date();
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0');
+    let yyyy = today.getFullYear();
+    const todayFormated = yyyy + '-' + mm + '-' + dd;
+
+    //Get last week's date
+    const oneWeek = new Date();
+    oneWeek.setDate(today.getDate() - 7);
+    dd = String(oneWeek.getDate() - 1).padStart(2, '0');
+    mm = String(oneWeek.getMonth() + 1).padStart(2, '0');
+    yyyy = oneWeek.getFullYear();
+    const oneWeekFormatted = yyyy + '-' + mm + '-' + dd;
+
+    //Get last month's date
+    const oneMonth = new Date();
+    oneMonth.setDate(today.getDate() - 30);
+    dd = String(oneMonth.getDate() - 1).padStart(2, '0');
+    mm = String(oneMonth.getMonth() + 1).padStart(2, '0');
+    yyyy = oneMonth.getFullYear();
+    const oneMonthFormatted = yyyy + '-' + mm + '-' + dd;
+
+    //Get UNIX time for current moment
+    var unixNow = Math.floor(Date.now() / 1000)
+
+    //Get news for last week
     const stockNews = await fetch(
-      `https://finnhub.io/api/v1/company-news?symbol=${ticker}&from=2020-05-01&to=2020-05-01&token=br8pn77rh5ral083irt0`
+      `https://finnhub.io/api/v1/company-news?symbol=${ticker}&from=${oneWeekFormatted}&to=${todayFormated}&token=br8pn77rh5ral083irt0`
     );
     const stockNewsJSON = await stockNews.json();
 
@@ -83,8 +110,9 @@ const StockEngine = (props) => {
     );
     const stockTargetJSON = await stockTarget.json();
 
+    //Get earnings from last 30 days (API limitations for free version)
     const stockEarnings = await fetch(
-      `https://finnhub.io/api/v1/calendar/earnings?from=2010-01-01&to=2020-05-15&symbol=${ticker}&token=br8pn77rh5ral083irt0`
+      `https://finnhub.io/api/v1/calendar/earnings?from=${oneMonthFormatted}&to=${todayFormated}&symbol=${ticker}&token=br8pn77rh5ral083irt0`
     );
     const stockEarningsJSON = await stockEarnings.json();
 
@@ -94,7 +122,7 @@ const StockEngine = (props) => {
     const stockDailyJSON = await stockDaily.json();
 
     const stockCandle = await fetch(
-      `https://finnhub.io/api/v1/stock/candle?symbol=${ticker}&resolution=1&from=1572651390&to=1572910590&token=br8pn77rh5ral083irt0`
+      `https://finnhub.io/api/v1/stock/candle?symbol=${ticker}&resolution=1&from=788918400&to=${unixNow}&token=br8pn77rh5ral083irt0`
     );
     const stockCandleJSON = await stockCandle.json();
 
@@ -178,6 +206,20 @@ const StockEngine = (props) => {
     }
 
     try {
+      setCandles({
+        ticker: stockInfoJSON.ticker,
+        c : stockCandleJSON.c,
+        h: stockCandleJSON.h,
+        l: stockCandleJSON.l,
+        o: stockCandleJSON.o,
+        t: stockCandleJSON.t,
+        v: stockCandleJSON.v
+      });
+    } catch (err) {
+      console.log("Could not set candles");
+    }
+
+    try {
       setTechnicalAnalysis({
         buy: stockTechnicalJSON.technicalAnalysis.count.buy,
         sell: stockTechnicalJSON.technicalAnalysis.count.sell,
@@ -252,6 +294,16 @@ const StockEngine = (props) => {
     prevClose: 0,
   });
 
+  const [candles, setCandles] = useState({
+    ticker: "SYMBOL",
+    c : [],
+    h: [],
+    l: [],
+    o: [],
+    t: [],
+    v: []
+  });
+
   const [earnings, setEarnings] = useState({
     quarter: 0,
     date: null,
@@ -274,23 +326,23 @@ const StockEngine = (props) => {
   });
 
   const [recommendations, setRecommendations] = useState({
-    buy: null,
-    sell: null,
-    strongBuy: null,
-    strongSell: null,
-    hold: null,
+    buy: 0,
+    sell: 0,
+    strongBuy: 0,
+    strongSell: 0,
+    hold: 0,
   });
 
   const [priceTarget, setPriceTarget] = useState({
-    targetHigh: null,
-    targetLow: null,
-    targetAvg: null,
+    targetHigh: 0,
+    targetLow: 0,
+    targetAvg: 0,
   });
 
   const [technicalAnalysis, setTechnicalAnalysis] = useState({
-    buy: null,
-    sell: null,
-    neutral: null,
+    buy: 0,
+    sell: 0,
+    neutral: 0,
     signal: null,
   });
 
@@ -344,6 +396,7 @@ const StockEngine = (props) => {
           recommendations={recommendations}
           priceTarget={priceTarget}
           technicalAnalysis={technicalAnalysis}
+          candles = {candles}
         />
        : 
         <NewsView
