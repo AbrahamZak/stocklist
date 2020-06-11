@@ -52,11 +52,11 @@ router.get('/users/watchlist', auth, async(req, res) => {
     }
 })
 
-router.post('/users/watchlist/new', auth, async(req, res) => {
-    //Add a ticker to a user's watchlist
+router.post('/users/watchlist/update', auth, async(req, res) => {
+    //Add or remove a ticker to a user's watchlist
     try {
         const { ticker } = req.body
-        const result = await req.user.addWatchList(ticker)
+        const result = await req.user.updateWatchList(ticker)
         res.send(result)
     } catch (error) {
         res.status(400).send({ error: error.message })

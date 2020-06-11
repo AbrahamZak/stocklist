@@ -57,10 +57,24 @@ userSchema.methods.generateWatchList = async function() {
     return user.watchlist
 }
 
-userSchema.methods.addWatchList = async function(ticker) {
-    // Add ticker to user's watchlist
+userSchema.methods.updateWatchList = async function(ticker) {
+    // Add or remove ticker to user's watchlist
     const user = this
-    user.watchlist = user.watchlist.concat({symbol: ticker})
+    let index = -1
+    let obj = user.watchlist.find((o, i) => {
+        if (o.symbol === ticker) {
+            index = i;
+        }
+    });
+    //If it exists in the watchlist remove it
+    if (index > -1){
+        user.watchlist.splice(index, 1);
+    }
+    //If not add it
+    else{
+        user.watchlist = user.watchlist.concat({symbol: ticker})
+    }
+    //Save the user
     await user.save()
     return user.watchlist
 }
