@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 
 import styled from "styled-components";
+
+import { isEmail } from "validator";
+
+import AuthService from "../services/auth.service";
 
 const Background = styled.section`
   width: 100%;
@@ -12,7 +16,7 @@ const Background = styled.section`
 
 const Wrapper = styled.div`
   width: 400px;
-  height: 415px;
+  height: 450px;
   margin: 0 auto;
   z-index: -10;
   background: black;
@@ -25,6 +29,16 @@ const Wrapper = styled.div`
 const Header = styled.p`
 font-family: "PT Sans", serif;
 font-size: 1.5rem;
+font-weight: bold;
+color: white;
+padding-left: 20px;
+margin-bottom: 13px;
+display: block;
+`
+
+const MessageBox = styled.p`
+font-family: "PT Sans", serif;
+font-size: 1rem;
 font-weight: bold;
 color: white;
 padding-left: 20px;
@@ -79,21 +93,59 @@ input{
 `
 
 const Signup = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleSignup = (event) => {
+    event.preventDefault();
+    if (!isEmail(email)) {
+      setMessage("Email is not valid!");
+    }
+    else if (password.length < 7){
+      setMessage("Password must be greater than 7 characters!");
+    }
+    else if (password !== confirmPassword){
+      setMessage("Password and confirm password do not match!");
+    }
+    else{
+      setMessage("");
+      AuthService.signup(email, password).then(
+        () => {
+          console.log("Success");
+        },
+        error => {
+          const resMessage =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+          setMessage(resMessage);
+        }
+      );
+    }
+  };
+
     return (  
         <Background>
             <Wrapper>
                <Header>Signup</Header>
                <FormDesign>
+                 <MessageBox>
+               {message}
+               </MessageBox>
                 <label>Email
-                <input name="email" placeholder="Email" type="email" />
+                <input value={email} onChange={(e)=>setEmail(e.target.value)} name="email" placeholder="Email" type="email" />
                 </label>
                  <label>Password
-                  <input name="password" placeholder="******" type="password" autoComplete="on"/>
+                  <input value={password} onChange={(e)=>setPassword(e.target.value)} name="password" placeholder="******" type="password" autoComplete="on"/>
                   </label>
                   <label>Confirm Password
-                  <input name="confirmPassword" placeholder="******" type="password" autoComplete="on"/>
+                  <input value={confirmPassword} onChange={(e)=>setConfirmPassword(e.target.value)} name="confirmPassword" placeholder="******" type="password" autoComplete="on"/>
                   </label>
-               <SubmitButton type="submit">Signup</SubmitButton>                                                      
+               <SubmitButton onClick={e=>handleSignup(e)} type="submit">Signup</SubmitButton>                                                      
               </FormDesign>
             </Wrapper>
         </Background>

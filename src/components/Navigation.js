@@ -6,6 +6,8 @@ import styled from "styled-components";
 import NavigationButton from "./NavigationView/NavigationButton";
 import NavigationSearchInput from "./NavigationView/NavigationSearchInput";
 
+import authService from "../services/auth.service";
+
 const Background = styled.div`
   width: 100%;
   height: 57px;
@@ -27,8 +29,51 @@ const Title = styled.p`
   }
 `;
 
-//This is the site's navigation bar which includes the title, the search bar, and log/signup buttons
-const Navigation = () => {
+const NavButton = styled.button`
+  font-family: "PT Sans", serif;
+  background-color: white;
+  border-style: solid;
+  border-radius: 10px;
+  border-color: black;
+  color: black;
+  padding: 5px 25px;
+  margin-right: 1%;
+  margin-top: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  float: right;
+  transition-duration: 0.4s;
+  cursor: pointer;
+ 
+  &:hover {
+    background-color: black;
+    color: white;
+  }
+`;
+
+
+//This is the site's navigation bar which includes the title, the search bar, and log/signup/signout,watchlist buttons
+const Navigation = ({loggedIn, setLoggedIn}) => {
+
+  //Logout button
+  const handleLogout = (event) => {
+    console.log("hello");
+    event.preventDefault();
+    authService.logout();
+    //setLoggedIn(false);
+  }
+
+  if (loggedIn){
+    return (
+      <Background>
+        <Title><NavLink to = "/">StockList</NavLink></Title>
+          <NavButton onClick={e=>handleLogout(e)} buttonText={"Logout"}>Logout</NavButton>
+          <NavigationButton buttonText={"Watchlist"} />
+          <NavigationSearchInput/>
+      </Background>
+    );
+  }
+
   return (
     <Background>
       <Title><NavLink to = "/">StockList</NavLink></Title>

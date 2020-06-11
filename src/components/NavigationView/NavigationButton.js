@@ -23,7 +23,7 @@ const NavButton = styled.button`
     background-color: black;
     color: white;
   }
-`;
+`
 
 //Button design for navigation bar, takes in text for button and router directions
 const NavigationButton = ({ buttonText }) => {
