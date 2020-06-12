@@ -2,60 +2,56 @@ import axios from "axios";
 
 const API_URL = "http://localhost:3000/";
 
+//All methods relating to Login, includes login, signup, logout
 class AuthService {
   login(emailIn, passwordIn) {
     return axios
       .post(API_URL + "users/login", {
-        "email": emailIn,
-        "password": passwordIn
+        email: emailIn,
+        password: passwordIn,
       })
-      .then(response => {
+      .then((response) => {
         if (response.data.token) {
-          localStorage.setItem('user', JSON.stringify(response.data));
+          localStorage.setItem("user", JSON.stringify(response.data));
         }
-        console.log(response.data);
         return response.data;
       });
   }
 
-   logout() {
-    const user = JSON.parse(localStorage.getItem('user'));
-    let config = {}
+  logout() {
+    const user = JSON.parse(localStorage.getItem("user"));
+    let config = {};
 
     if (user && user.token) {
-      config = { headers: { Authorization: 'Bearer ' + user.token }};
-    } 
+      config = { headers: { Authorization: "Bearer " + user.token } };
+    }
 
-    let body = {}; 
+    let body = {};
 
     return axios
-    .post(API_URL + "users/me/logoutall", body, config)
-    .then(response => {
-      console.log(response);
-      localStorage.removeItem('user');
-      console.log(JSON.parse(localStorage.getItem('user')));
-      return response.data;
-    });
+      .post(API_URL + "users/me/logoutall", body, config)
+      .then((response) => {
+        localStorage.removeItem("user");
+        return response.data;
+      });
   }
 
   signup(emailIn, passwordIn) {
     return axios
       .post(API_URL + "users", {
-        "email": emailIn,
-        "password": passwordIn
+        email: emailIn,
+        password: passwordIn,
       })
-      .then(response => {
+      .then((response) => {
         if (response.data.token) {
-          localStorage.setItem('user', JSON.stringify(response.data));
+          localStorage.setItem("user", JSON.stringify(response.data));
         }
-        console.log(response.data);
         return response.data;
       });
   }
 
   getCurrentUser() {
-    console.log(JSON.parse(localStorage.getItem('user')));
-    return JSON.parse(localStorage.getItem('user'));
+    return JSON.parse(localStorage.getItem("user"));
   }
 }
 

@@ -13,6 +13,8 @@ import StockRecommend from "./StockRecommend";
 import StockTechnical from "./StockTechnical";
 import StockRelated from "./StockRelated";
 
+import UserService from "../../services/user.service";
+
 const WrapLeft = styled.div`
   float: left;
   width: 50%;
@@ -32,25 +34,78 @@ const Background = styled.div`
   padding-bottom: 35px;
 `;
 
-//StockView component, main component for financial data for StockEngine
-const StockView = ({basicInfo, companyInfo, earnings, priceTarget, recommendations, technicalAnalysis, related, candles}) => {
+const WatchButton = styled.button`
+  font-family: "PT Sans", serif;
+  background-color: white;
+  border-style: solid;
+  border-radius: 10px;
+  border-color: black;
+  color: black;
+  padding: 5px 25px;
+  margin-right: 1%;
+  margin-top: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  float: left;
+  transition-duration: 0.4s;
+  cursor: pointer;
 
+  &:hover {
+    background-color: black;
+    color: white;
+  }
+`;
+
+//StockView component, main component for financial data for StockEngine
+const StockView = ({
+  loggedIn,
+  basicInfo,
+  companyInfo,
+  earnings,
+  priceTarget,
+  recommendations,
+  technicalAnalysis,
+  related,
+  candles,
+}) => {
   //Convert large numbers to string with commas
-  const format = (num) =>
-    Number(parseInt(num)).toLocaleString('en');
+  const format = (num) => Number(parseInt(num)).toLocaleString("en");
 
   //Convert large numbers to string with commas and 2 decimals figures
   const formatDecimal = (num) =>
-    Number(parseFloat(num).toFixed(2)).toLocaleString('en', {
-    minimumFractionDigits: 2
-  });
+    Number(parseFloat(num).toFixed(2)).toLocaleString("en", {
+      minimumFractionDigits: 2,
+    });
+
+  //Update the watchlist with current ticker
+  const updateWatch = (event) => {
+    event.preventDefault();
+    UserService.updateWatchlist(basicInfo.ticker).then(
+      () => {
+        console.log("Success");
+      },
+      (error) => {
+        console.log("Update watchlist error!");
+      }
+    );
+  };
 
   return (
     <Background>
       <WrapLeft>
+        {loggedIn ? (
+          <WatchButton onClick={(e) => updateWatch(e)}>
+            Add to Watchlist
+          </WatchButton>
+        ) : (
+          <></>
+        )}
         <StockName name={basicInfo.name} ticker={basicInfo.ticker} />
-        <StockPrice price={formatDecimal(basicInfo.price)} change={basicInfo.change} />
-        <StockChart candles = {candles}/>
+        <StockPrice
+          price={formatDecimal(basicInfo.price)}
+          change={basicInfo.change}
+        />
+        <StockChart candles={candles} />
         <StockDaily
           todayHigh={formatDecimal(basicInfo.todayHigh)}
           todayLow={formatDecimal(basicInfo.todayLow)}

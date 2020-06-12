@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom"
+import { NavLink } from "react-router-dom";
 
 import styled from "styled-components";
 
@@ -23,7 +23,7 @@ const Title = styled.p`
   margin-top: 0px;
   padding-top: 15px;
 
-  a{
+  a {
     color: black;
     text-decoration: none;
   }
@@ -44,51 +44,53 @@ const NavButton = styled.button`
   float: right;
   transition-duration: 0.4s;
   cursor: pointer;
- 
+
   &:hover {
     background-color: black;
     color: white;
   }
 `;
 
-
 //This is the site's navigation bar which includes the title, the search bar, and log/signup/signout,watchlist buttons
-const Navigation = ({loggedIn, setLoggedIn}) => {
-
+const Navigation = ({ loggedIn, setLoggedIn }) => {
   //Logout button
   const handleLogout = (event) => {
     event.preventDefault();
-        authService.logout().then(
-          () => {
-            console.log("Success");
-            setLoggedIn(false);
-          },
-          error => {
-            console.log("Logout error!")
-          }
-        );
-      };
+    authService.logout().then(
+      () => {
+        console.log("Success");
+        setLoggedIn(false);
+      },
+      (error) => {
+        console.log("Logout error!");
+      }
+    );
+  };
 
-  if (loggedIn){
+  if (loggedIn) {
     return (
       <Background>
-        <Title><NavLink to = "/">StockList</NavLink></Title>
-          <NavButton onClick={e=>handleLogout(e)} buttonText={"Logout"}>Logout</NavButton>
-          <NavigationButton buttonText={"Watchlist"} />
-          <NavigationSearchInput/>
+        <Title>
+          <NavLink to="/">StockList</NavLink>
+        </Title>
+        <NavButton onClick={(e) => handleLogout(e)} buttonText={"Logout"}>
+          Logout
+        </NavButton>
+        <NavigationButton buttonText={"Watchlist"} />
+        <NavigationSearchInput />
       </Background>
     );
-  }
-
-  else{
-  return (
-    <Background>
-      <Title><NavLink to = "/">StockList</NavLink></Title>
+  } else {
+    return (
+      <Background>
+        <Title>
+          <NavLink to="/">StockList</NavLink>
+        </Title>
         <NavigationButton buttonText={"Login"} />
         <NavigationButton buttonText={"Signup"} />
-        <NavigationSearchInput/>
-    </Background>
-  );
+        <NavigationSearchInput />
+      </Background>
+    );
   }
 };
 

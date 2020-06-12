@@ -41,7 +41,7 @@ router.get('/users/me', auth, async(req, res) => {
     }
 })
 
-router.get('/users/watchlist', auth, async(req, res) => {
+router.post('/users/watchlist', auth, async(req, res) => {
     // View logged in user watchlist
     try {
         const watchlist = await req.user.generateWatchList()

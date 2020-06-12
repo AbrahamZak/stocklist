@@ -22,29 +22,29 @@ const Wrapper = styled.div`
   background: black;
   border-style: solid;
   border-radius: 10px;
-  border-color: white; 
+  border-color: white;
   margin-top: 50px;
 `;
 
 const Header = styled.p`
-font-family: "PT Sans", serif;
-font-size: 1.5rem;
-font-weight: bold;
-color: white;
-padding-left: 20px;
-margin-bottom: 13px;
-display: block;
-`
+  font-family: "PT Sans", serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  padding-left: 20px;
+  margin-bottom: 13px;
+  display: block;
+`;
 
 const MessageBox = styled.p`
-font-family: "PT Sans", serif;
-font-size: 1rem;
-font-weight: bold;
-color: white;
-padding-left: 20px;
-margin-bottom: 13px;
-display: block;
-`
+  font-family: "PT Sans", serif;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  padding-left: 20px;
+  margin-bottom: 13px;
+  display: block;
+`;
 
 const SubmitButton = styled.button`
   font-family: "PT Sans", serif;
@@ -68,31 +68,31 @@ const SubmitButton = styled.button`
 `;
 
 const FormDesign = styled.form`
-label{
-  font-family: "PT Sans", serif;
-  font-size: .8rem;
-  line-height: 30px;
-  color: white;
-  font-weight: bold;
-  padding-left: 20px; 
-}
-input{
-  font-family: "PT Sans", serif;
-  font-size: 1rem;
-  padding-right: 45%;
-  padding-left: 2.5%;
-  height: 40px;
-  margin-left: 20px; 
-  background-color: black;
-  border-style: solid;
-  border-radius: 5px;
-  border-color: white;
-  color: white;
-  margin-bottom: 15px;
-}
-`
+  label {
+    font-family: "PT Sans", serif;
+    font-size: 0.8rem;
+    line-height: 30px;
+    color: white;
+    font-weight: bold;
+    padding-left: 20px;
+  }
+  input {
+    font-family: "PT Sans", serif;
+    font-size: 1rem;
+    padding-right: 45%;
+    padding-left: 2.5%;
+    height: 40px;
+    margin-left: 20px;
+    background-color: black;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: white;
+    color: white;
+    margin-bottom: 15px;
+  }
+`;
 
-const Signup = ({setLoggedIn}) => {
+const Signup = ({ setLoggedIn }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -102,21 +102,18 @@ const Signup = ({setLoggedIn}) => {
     event.preventDefault();
     if (!isEmail(email)) {
       setMessage("Email is not valid!");
-    }
-    else if (password.length < 7){
+    } else if (password.length < 7) {
       setMessage("Password must be greater than 7 characters!");
-    }
-    else if (password !== confirmPassword){
+    } else if (password !== confirmPassword) {
       setMessage("Password and confirm password do not match!");
-    }
-    else{
+    } else {
       setMessage("");
       AuthService.signup(email, password).then(
         () => {
           console.log("Success");
           setLoggedIn(true);
         },
-        error => {
+        (error) => {
           const resMessage =
             (error.response &&
               error.response.data &&
@@ -129,28 +126,51 @@ const Signup = ({setLoggedIn}) => {
     }
   };
 
-    return (  
-        <Background>
-            <Wrapper>
-               <Header>Signup</Header>
-               <FormDesign>
-                 <MessageBox>
-               {message}
-               </MessageBox>
-                <label>Email
-                <input value={email} onChange={(e)=>setEmail(e.target.value)} name="email" placeholder="Email" type="email" />
-                </label>
-                 <label>Password
-                  <input value={password} onChange={(e)=>setPassword(e.target.value)} name="password" placeholder="******" type="password" autoComplete="on"/>
-                  </label>
-                  <label>Confirm Password
-                  <input value={confirmPassword} onChange={(e)=>setConfirmPassword(e.target.value)} name="confirmPassword" placeholder="******" type="password" autoComplete="on"/>
-                  </label>
-               <SubmitButton onClick={e=>handleSignup(e)} type="submit">Signup</SubmitButton>                                                      
-              </FormDesign>
-            </Wrapper>
-        </Background>
-    );
-}
- 
+  return (
+    <Background>
+      <Wrapper>
+        <Header>Signup</Header>
+        <FormDesign>
+          <MessageBox>{message}</MessageBox>
+          <label>
+            Email
+            <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              name="email"
+              placeholder="Email"
+              type="email"
+            />
+          </label>
+          <label>
+            Password
+            <input
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              name="password"
+              placeholder="******"
+              type="password"
+              autoComplete="on"
+            />
+          </label>
+          <label>
+            Confirm Password
+            <input
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              name="confirmPassword"
+              placeholder="******"
+              type="password"
+              autoComplete="on"
+            />
+          </label>
+          <SubmitButton onClick={(e) => handleSignup(e)} type="submit">
+            Signup
+          </SubmitButton>
+        </FormDesign>
+      </Wrapper>
+    </Background>
+  );
+};
+
 export default Signup;

@@ -44,12 +44,13 @@ Integration with stock API - 100%\
 See stock price and other stock data (earnings, company info, recommendations, price targets, technical indicator sentiment, related companies) - 100%\
 See latest news for stock (company news, buzz scores, news sentiment, sector news sentiment) - 100%\
 See related stocks and click on any to navigate to that stock's page - 100%\
-Add stock to watchlist (when logged in) - 0%\
+Add stock to watchlist (when logged in) - 100%\
+Remove Stock from watchlist (when logged in) - 100%\
 Interactive stock chart - 50%\
 \
-Wacthlist page (when logged in) (50%)\
+Watchlist page (when logged in) (50%)\
 Design - 50%\
-See Watchlist - 0%\
+See Watchlist - 100%\
 Remove Stock from watchlist - 0%\
 \
 Mobile Adjustments (0%)\
@@ -64,3 +65,12 @@ Connect to React Frontend (100%)
 
 ## Known Issues
 Interactive chart doesn't dynamically resize
+
+## Next Updates (In order)
+-Change add to watchlist button into "remove from watchlist" when a stock is already in watchlist\
+-Remove stock from watchlist in the actual watchlist page\
+-Re-design watchlist page
+-Create design for stock chart
+-Deploy API/Login Server
+-Mobile adjustments
+-Redesign stock page?
