@@ -92,7 +92,7 @@ input{
 }
 `
 
-const Signup = () => {
+const Signup = ({setLoggedIn}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -114,6 +114,7 @@ const Signup = () => {
       AuthService.signup(email, password).then(
         () => {
           console.log("Success");
+          setLoggedIn(true);
         },
         error => {
           const resMessage =

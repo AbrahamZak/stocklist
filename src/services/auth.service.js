@@ -11,19 +11,29 @@ class AuthService {
       })
       .then(response => {
         if (response.data.token) {
-          localStorage.setItem("user", JSON.stringify(response.data));
+          localStorage.setItem('user', JSON.stringify(response.data));
         }
         console.log(response.data);
         return response.data;
       });
   }
 
-  logout() {
+   logout() {
+    const user = JSON.parse(localStorage.getItem('user'));
+    let config = {}
+
+    if (user && user.token) {
+      config = { headers: { Authorization: 'Bearer ' + user.token }};
+    } 
+
+    let body = {}; 
+
     return axios
-    .post(API_URL + "users/me/logoutall", this.getCurrentUser())
+    .post(API_URL + "users/me/logoutall", body, config)
     .then(response => {
       console.log(response);
-      localStorage.removeItem("user");
+      localStorage.removeItem('user');
+      console.log(JSON.parse(localStorage.getItem('user')));
       return response.data;
     });
   }
@@ -36,7 +46,7 @@ class AuthService {
       })
       .then(response => {
         if (response.data.token) {
-          localStorage.setItem("user", JSON.stringify(response.data));
+          localStorage.setItem('user', JSON.stringify(response.data));
         }
         console.log(response.data);
         return response.data;
@@ -44,7 +54,7 @@ class AuthService {
   }
 
   getCurrentUser() {
-    //console.log(JSON.parse(localStorage.getItem('user')));
+    console.log(JSON.parse(localStorage.getItem('user')));
     return JSON.parse(localStorage.getItem('user'));
   }
 }

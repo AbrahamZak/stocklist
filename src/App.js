@@ -13,6 +13,7 @@ import Watchlist from "./components/Watchlist";
 import AuthService from "./services/auth.service";
 
 function App() {
+  //Variable state for logged in status, sent to the signup and login pages
   const [loggedIn, setLoggedIn] = useState(false);
 
     //Get logged in state on page load
@@ -29,8 +30,8 @@ function App() {
       <Navigation loggedIn = {loggedIn} setLoggedIn = {setLoggedIn}/>
       <Switch>
         <Route exact path="/" component={Homepage} />
-        <Route exact path="/login"> {loggedIn ? <Redirect to="/watchlist" /> : <Login/>} </Route>  
-        <Route exact path="/signup">{loggedIn ? <Redirect to="/watchlist" /> : <Signup/>} </Route> 
+        <Route exact path="/login"> {loggedIn ? <Redirect to="/watchlist" /> : <Login setLoggedIn = {setLoggedIn}/>} </Route>  
+        <Route exact path="/signup">{loggedIn ? <Redirect to="/watchlist" /> : <Signup setLoggedIn = {setLoggedIn}/>} </Route> 
         <Route exact path="/stock/:ticker" component={StockEngine} />
         <Route exact path="/watchlist">{!loggedIn ? <Redirect to="/login" /> : <Watchlist/>} </Route> 
       </Switch>

@@ -92,7 +92,7 @@ input{
 }
 `
 
-const Login = () => {
+const Login = ({setLoggedIn}) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
@@ -110,6 +110,7 @@ const Login = () => {
           AuthService.login(email, password).then(
             () => {
               console.log("Success");
+              setLoggedIn(true);
             },
             error => {
               const resMessage =

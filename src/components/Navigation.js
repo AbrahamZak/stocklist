@@ -57,11 +57,17 @@ const Navigation = ({loggedIn, setLoggedIn}) => {
 
   //Logout button
   const handleLogout = (event) => {
-    console.log("hello");
     event.preventDefault();
-    authService.logout();
-    //setLoggedIn(false);
-  }
+        authService.logout().then(
+          () => {
+            console.log("Success");
+            setLoggedIn(false);
+          },
+          error => {
+            console.log("Logout error!")
+          }
+        );
+      };
 
   if (loggedIn){
     return (
@@ -74,6 +80,7 @@ const Navigation = ({loggedIn, setLoggedIn}) => {
     );
   }
 
+  else{
   return (
     <Background>
       <Title><NavLink to = "/">StockList</NavLink></Title>
@@ -82,6 +89,7 @@ const Navigation = ({loggedIn, setLoggedIn}) => {
         <NavigationSearchInput/>
     </Background>
   );
+  }
 };
 
 export default Navigation;
