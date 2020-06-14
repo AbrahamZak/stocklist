@@ -51,7 +51,7 @@ const SubmitButton = styled.button`
   border-radius: 5px;
   border-color: white;
   color: white;
-  padding: 8px 39%;
+  padding: 8px 155px;
   font-size: 1rem;
   font-weight: bold;
   text-align: center;
@@ -77,7 +77,7 @@ const FormDesign = styled.form`
   input {
     font-family: "PT Sans", serif;
     font-size: 1rem;
-    padding-right: 45%;
+    width: 345px;
     padding-left: 2.5%;
     height: 40px;
     margin-left: 20px;

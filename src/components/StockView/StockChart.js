@@ -78,7 +78,7 @@ const StockChart = ({candles}) => {
       to: (Math.floor(Date.now() / 1000)),
     });
     
-  });
+  }, [candles.c, candles.t]);
 
 
   return (
