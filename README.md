@@ -48,29 +48,29 @@ Add stock to watchlist (when logged in) - 100%\
 Remove Stock from watchlist (when logged in) - 100%\
 Interactive stock chart - 50%\
 \
-Watchlist page (when logged in) (50%)\
+Watchlist page (when logged in) (75%)\
 Design - 50%\
 See Watchlist - 100%\
-Remove Stock from watchlist - 0%\
+Remove Stock from watchlist - 100%\
 \
 Mobile Adjustments (0%)\
 Fix design for mobile experience - 0%\
 Other mobile tweeks - 0%\
 \
-Backend (75%)\
+Backend (100%)\
 Set up MongoDB database (100%)\
 Develop backend login server / watchlist API (100%)\
-Deploy Server (0%)\
+Deploy Server (100%)\
 Connect to React Frontend (100%)
 
 ## Known Issues
 Interactive chart doesn't dynamically resize
 
 ## Next Updates (In order)
--Change add to watchlist button into "remove from watchlist" when a stock is already in watchlist\
--Remove stock from watchlist in the actual watchlist page\
--Re-design watchlist page
--Create design for stock chart
--Deploy API/Login Server
--Mobile adjustments
+~~-Change add to watchlist button into "remove from watchlist" when a stock is already in watchlist~~\
+~~-Remove stock from watchlist in the actual watchlist page~~\
+-Re-design watchlist page\
+-Create design for stock chart\
+-~~Deploy API/Login Server~~\
+-Mobile adjustments\
 -Redesign stock page?

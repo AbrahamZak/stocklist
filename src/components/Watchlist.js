@@ -38,12 +38,35 @@ const List = styled.ul`
   }
 `;
 
+const RemoveButton = styled.button`
+  font-family: "PT Sans", serif;
+  background-color: white;
+  border-style: solid;
+  border-radius: 10px;
+  border-color: black;
+  color: black;
+  padding: 5px 25px;
+  margin-left: 1%;
+  margin-top: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  transition-duration: 0.4s;
+  cursor: pointer;
+
+  &:hover {
+    background-color: black;
+    color: white;
+  }
+`;
+
 //Site's watchlist page, basic text header and each watchlist item loaded from API with da elete button next to each
 const Watchlist = () => {
   //Variable for watchlist
   const [watchlist, setWatchlist] = useState([{symbol: "none"}, {symbol: "hello"}]);
   //Variable for if watchlist data is loading
   const [isLoading, setLoading] = useState(true);
+  //Variable for if watchlist data is reloading
+  const [reload, setReload] = useState(false);
 
   //Get watchlist in state on component load, display a loading page until our data is loaded in
   useEffect(() => {
@@ -62,6 +85,36 @@ const Watchlist = () => {
     );
   }, []);
 
+  //Get watchlist on reload after delete
+  useEffect(() => {
+    async function getWatchlist(){
+      var data = UserService.getWatchlist();
+      return await data;
+    }
+    getWatchlist().then(
+      (response) => {
+        setWatchlist(response);
+        setReload(false);
+      },
+      (error) => {
+        console.log("Update watchlist error!");
+      }
+    );
+  }, [reload]);
+
+  //Remove stock from watchlist
+    const handleRemove = (ticker) => {
+      UserService.updateWatchlist(ticker.symbol).then(
+        () => {
+          console.log("Success");
+          setReload(true);
+        },
+        (error) => {
+          console.log("Update watchlist error!");
+        }
+      );
+    };
+
   if (isLoading) {
     return <Loading />;
   }
@@ -74,9 +127,12 @@ const Watchlist = () => {
         <List>
         {watchlist.map((stock, index) => (
           <li key={index}>
-            <a rel="noopener noreferrer" target="_blank" href={"/stock/"+ stock.symbol}>
+            <a href={"/stock/"+ stock.symbol}>
               {stock.symbol}
             </a>
+            <RemoveButton onClick={() => handleRemove(stock)}>
+          Remove
+        </RemoveButton>
           </li>
         ))}
         </List>

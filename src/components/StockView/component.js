@@ -42,7 +42,7 @@ const WatchButton = styled.button`
   border-color: black;
   color: black;
   padding: 5px 25px;
-  margin-right: 1%;
+  margin-left: 1%;
   margin-top: 10px;
   font-size: 1rem;
   font-weight: bold;
@@ -59,6 +59,8 @@ const WatchButton = styled.button`
 //StockView component, main component for financial data for StockEngine
 const StockView = ({
   loggedIn,
+  inWatch,
+  setReload,
   basicInfo,
   companyInfo,
   earnings,
@@ -68,6 +70,7 @@ const StockView = ({
   related,
   candles,
 }) => {
+
   //Convert large numbers to string with commas
   const format = (num) => Number(parseInt(num)).toLocaleString("en");
 
@@ -82,6 +85,8 @@ const StockView = ({
     event.preventDefault();
     UserService.updateWatchlist(basicInfo.ticker).then(
       () => {
+        //Reload the button
+        setReload(true);
         console.log("Success");
       },
       (error) => {
@@ -95,7 +100,7 @@ const StockView = ({
       <WrapLeft>
         {loggedIn ? (
           <WatchButton onClick={(e) => updateWatch(e)}>
-            Add to Watchlist
+            {inWatch}
           </WatchButton>
         ) : (
           <></>

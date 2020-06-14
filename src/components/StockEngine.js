@@ -4,7 +4,9 @@ import styled from "styled-components";
 
 import StockView from "./StockView/component";
 import NewsView from "./NewsView/component";
-import Loading from "./Loading";
+import Loading from "./Loading"
+
+import UserService from "../services/user.service";
 
 const Wrapper = styled.div`
   position: relative;
@@ -34,11 +36,15 @@ const ButtonGroup = styled.button`
 
 const StockEngine = (props) => {
   //Get ticker from params
-  let ticker = props.match.params.ticker;
+  let ticker = props.match.params.ticker
   //Variable for current view
   const [isFinancialView, setCurrentView] = useState(true);
+  //Variable for watchlist button, used to check if stock is already in a user's watchlist
+  const [inWatch, setInWatch] = useState("Add to Watchlist");
   //Variable for if stock data is loading
   const [isLoading, setLoading] = useState(true);
+  //Variable for if watchlist status is reloading
+  const [reload, setReload] = useState(false);
 
   //Functions to switch view when selected in view
   function switchFinancials() {
@@ -60,29 +66,29 @@ const StockEngine = (props) => {
 
     //Get today's date
     const today = new Date();
-    let dd = String(today.getDate()).padStart(2, "0");
-    let mm = String(today.getMonth() + 1).padStart(2, "0");
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0');
     let yyyy = today.getFullYear();
-    const todayFormated = yyyy + "-" + mm + "-" + dd;
+    const todayFormated = yyyy + '-' + mm + '-' + dd;
 
     //Get last week's date
     const oneWeek = new Date();
     oneWeek.setDate(today.getDate() - 7);
-    dd = String(oneWeek.getDate() - 1).padStart(2, "0");
-    mm = String(oneWeek.getMonth() + 1).padStart(2, "0");
+    dd = String(oneWeek.getDate() - 1).padStart(2, '0');
+    mm = String(oneWeek.getMonth() + 1).padStart(2, '0');
     yyyy = oneWeek.getFullYear();
-    const oneWeekFormatted = yyyy + "-" + mm + "-" + dd;
+    const oneWeekFormatted = yyyy + '-' + mm + '-' + dd;
 
     //Get last month's date
     const oneMonth = new Date();
     oneMonth.setDate(today.getDate() - 30);
-    dd = String(oneMonth.getDate() - 1).padStart(2, "0");
-    mm = String(oneMonth.getMonth() + 1).padStart(2, "0");
+    dd = String(oneMonth.getDate() - 1).padStart(2, '0');
+    mm = String(oneMonth.getMonth() + 1).padStart(2, '0');
     yyyy = oneMonth.getFullYear();
-    const oneMonthFormatted = yyyy + "-" + mm + "-" + dd;
+    const oneMonthFormatted = yyyy + '-' + mm + '-' + dd;
 
     //Get UNIX time for current moment
-    var unixNow = Math.floor(Date.now() / 1000);
+    var unixNow = Math.floor(Date.now() / 1000)
 
     //Get news for last week
     const stockNews = await fetch(
@@ -208,12 +214,12 @@ const StockEngine = (props) => {
     try {
       setCandles({
         ticker: stockInfoJSON.ticker,
-        c: stockCandleJSON.c,
+        c : stockCandleJSON.c,
         h: stockCandleJSON.h,
         l: stockCandleJSON.l,
         o: stockCandleJSON.o,
         t: stockCandleJSON.t,
-        v: stockCandleJSON.v,
+        v: stockCandleJSON.v
       });
     } catch (err) {
       console.log("Could not set candles");
@@ -296,12 +302,12 @@ const StockEngine = (props) => {
 
   const [candles, setCandles] = useState({
     ticker: "SYMBOL",
-    c: [],
+    c : [],
     h: [],
     l: [],
     o: [],
     t: [],
-    v: [],
+    v: []
   });
 
   const [earnings, setEarnings] = useState({
@@ -350,8 +356,8 @@ const StockEngine = (props) => {
     {
       date: null,
       headline: null,
-      link: null,
-    },
+      link: null
+    }
   ]);
 
   const [newsSentiment, setNewsSentiment] = useState({
@@ -370,13 +376,40 @@ const StockEngine = (props) => {
     buzzScore: 0,
   });
 
+  //Get the watchlist status
+  useEffect(() => {
+    if (props.loggedIn === true){
+    async function getWatchlist(){
+      var data = UserService.getWatchlist();
+      return await data;
+    }
+    getWatchlist().then(
+      (response) => {
+        const found = response.some(stock => stock.symbol === ticker);
+        if (found){
+          setInWatch("Remove from Watchlist")
+        }
+        else{
+          setInWatch("Add to Watchlist")
+        }
+      },
+      (error) => {
+        console.log("Update watchlist error!");
+      }
+    );
+    setReload(false);
+    }
+  }, [props.loggedIn, ticker, reload]);
+
   //Get the stock data on page load
   useEffect(() => {
     getStockData(ticker);
   }, [ticker]);
 
-  if (isLoading) {
-    return <Loading />;
+  if (isLoading){
+    return(
+      <Loading/>
+    )
   }
 
   return (
@@ -385,9 +418,11 @@ const StockEngine = (props) => {
         <ButtonGroup onClick={switchFinancials}>Financials</ButtonGroup>
         <ButtonGroup onClick={switchNews}>News</ButtonGroup>
       </ButtonHolder>
-      {isFinancialView ? (
+      {isFinancialView ? 
         <StockView
-          loggedIn={props.loggedIn}
+          loggedIn = {props.loggedIn}
+          inWatch = {inWatch}
+          setReload = {setReload}
           basicInfo={basicInfo}
           earnings={earnings}
           related={related}
@@ -395,15 +430,15 @@ const StockEngine = (props) => {
           recommendations={recommendations}
           priceTarget={priceTarget}
           technicalAnalysis={technicalAnalysis}
-          candles={candles}
+          candles = {candles}
         />
-      ) : (
+       : 
         <NewsView
           companyNews={companyNews}
           newsSentiment={newsSentiment}
           newsBuzz={newsBuzz}
         />
-      )}
+      }
     </Wrapper>
   );
 };
