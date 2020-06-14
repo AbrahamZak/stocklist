@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:3000/";
+const API_URL = "https://stocklistserver.herokuapp.com/";
 
 //All methods relating to Login, includes login, signup, logout
 class AuthService {

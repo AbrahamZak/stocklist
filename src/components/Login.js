@@ -2,8 +2,6 @@ import React, { useState } from "react";
 
 import styled from "styled-components";
 
-import { isEmail } from "validator";
-
 import AuthService from "../services/auth.service";
 
 const Background = styled.section`
@@ -96,6 +94,10 @@ const Login = ({ setLoggedIn }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+
+  function isEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+  }
 
   const handleLogin = (event) => {
     event.preventDefault();

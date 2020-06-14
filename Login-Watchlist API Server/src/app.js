@@ -6,7 +6,11 @@ require('./db/db')
 
 const app = express()
 
-app.use(cors())
+var corsOptions = {
+    origin: "https://stocklist.abrahamzakharov.com"  
+  };
+
+app.use(cors(corsOptions))
 app.use(express.json())
 app.use(userRouter)
 
