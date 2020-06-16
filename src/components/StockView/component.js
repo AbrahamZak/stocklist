@@ -18,11 +18,18 @@ import UserService from "../../services/user.service";
 const WrapLeft = styled.div`
   float: left;
   width: 50%;
+  @media only screen and (max-width: 600px) {
+    width: 100%;
+  }
 `;
 
 const WrapRight = styled.div`
   float: right;
   width: 50%;
+  @media only screen and (max-width: 600px) {
+    float: left;
+    width: 100%;
+  }
 `;
 
 const Background = styled.div`
@@ -46,7 +53,6 @@ const WatchButton = styled.button`
   margin-top: 10px;
   font-size: 1rem;
   font-weight: bold;
-  float: left;
   transition-duration: 0.4s;
   cursor: pointer;
 

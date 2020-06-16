@@ -39,6 +39,9 @@ const Input = styled.input`
   background: white;
   border-color: black;
   border-radius: 3px;
+  @media only screen and (max-width: 600px) {
+    margin-top: 14px;
+  }
 `;
 
 const Wrapper = styled.div`

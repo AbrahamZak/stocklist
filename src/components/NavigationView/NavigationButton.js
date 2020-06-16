@@ -18,10 +18,16 @@ const NavButton = styled.button`
   float: right;
   transition-duration: 0.4s;
   cursor: pointer;
- 
+
   &:hover {
     background-color: black;
     color: white;
+  }
+
+  @media only screen and (max-width: 600px) {
+    margin-top: 14px;
+    padding: 4px 10px;
+    font-size: 0.9rem;
   }
 `
 

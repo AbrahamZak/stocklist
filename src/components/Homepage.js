@@ -23,6 +23,10 @@ const Content = styled.div`
   color: white;
   text-align: center;
   font-size: 1rem;
+  @media only screen and (max-width: 600px) {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
 `;
 
 //Site's homepage, basic text description of StockList

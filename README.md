@@ -53,9 +53,9 @@ Design - 50%\
 See Watchlist - 100%\
 Remove Stock from watchlist - 100%\
 \
-Mobile Adjustments (0%)\
-Fix design for mobile experience - 0%\
-Other mobile tweeks - 0%\
+Mobile Adjustments (100%)\
+Fix design for mobile experience - 100%\
+Other mobile tweeks - 100%\
 \
 Backend (100%)\
 Set up MongoDB database (100%)\
@@ -69,8 +69,6 @@ Interactive chart doesn't dynamically resize
 ## Next Updates (In order)
 ~~-Change add to watchlist button into "remove from watchlist" when a stock is already in watchlist~~\
 ~~-Remove stock from watchlist in the actual watchlist page~~\
--Re-design watchlist page\
--Create design for stock chart\
 -~~Deploy API/Login Server~~\
--Mobile adjustments\
--Redesign stock page?
+-~~Mobile adjustments~~\
+-Create design for stock chart\

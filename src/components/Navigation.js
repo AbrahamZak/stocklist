@@ -27,6 +27,29 @@ const Title = styled.p`
     color: black;
     text-decoration: none;
   }
+
+  @media only screen and (max-width: 600px) {
+    display: none;
+  }
+`;
+
+const SmallTitle = styled.p`
+  display: none;
+  font-family: "PT Sans", serif;
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-left: 10px;
+  margin-top: 0px;
+  padding-top: 15px;
+
+  a {
+    color: black;
+    text-decoration: none;
+  }
+
+  @media only screen and (max-width: 600px) {
+    display: inline-block;
+  }
 `;
 
 const NavButton = styled.button`
@@ -44,6 +67,12 @@ const NavButton = styled.button`
   float: right;
   transition-duration: 0.4s;
   cursor: pointer;
+
+  @media only screen and (max-width: 600px) {
+    margin-top: 14px;
+    padding: 4px 10px;
+    font-size: 0.9rem; 
+  }
 
   &:hover {
     background-color: black;
@@ -73,6 +102,9 @@ const Navigation = ({ loggedIn, setLoggedIn }) => {
         <Title>
           <NavLink to="/">StockList</NavLink>
         </Title>
+        <SmallTitle>
+          <NavLink to="/">SL</NavLink>
+        </SmallTitle>
         <NavButton onClick={(e) => handleLogout(e)} buttonText={"Logout"}>
           Logout
         </NavButton>
@@ -86,6 +118,9 @@ const Navigation = ({ loggedIn, setLoggedIn }) => {
         <Title>
           <NavLink to="/">StockList</NavLink>
         </Title>
+        <SmallTitle>
+          <NavLink to="/">SL</NavLink>
+        </SmallTitle>
         <NavigationButton buttonText={"Login"} />
         <NavigationButton buttonText={"Signup"} />
         <NavigationSearchInput />

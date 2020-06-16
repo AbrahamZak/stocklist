@@ -8,6 +8,9 @@ const PriceLabel = styled.p`
   margin-top: 0;
   font-size: 2rem;
   color: ${(props) => props.changeColor};
+  @media only screen and (max-width: 600px) {
+    font-size: 1.5rem;
+  }
 `;
 
 //Stock price and daily change

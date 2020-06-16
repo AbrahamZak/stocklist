@@ -9,6 +9,9 @@ const TitleLabel = styled.p`
   margin-bottom: 0;
   font-size: 3rem;
   font-weight: bold;
+  @media only screen and (max-width: 600px) {
+    font-size: 2rem;
+  }
 `;
 
 const CommaList = styled.ul`

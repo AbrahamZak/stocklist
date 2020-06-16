@@ -9,11 +9,18 @@ import NewsBuzz from "./NewsBuzz";
 const WrapLeft = styled.div`
   float: left;
   width: 50%;
+  @media only screen and (max-width: 600px) {
+    width: 100%;
+  }
 `;
 
 const WrapRight = styled.div`
   float: right;
   width: 50%;
+  @media only screen and (max-width: 600px) {
+    float: left;
+    width: 100%;
+  }
 `;
 
 const Background = styled.div`

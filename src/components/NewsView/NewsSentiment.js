@@ -8,6 +8,9 @@ const TitleLabel = styled.p`
   margin-bottom: 0;
   font-size: 3rem;
   font-weight: bold;
+  @media only screen and (max-width: 600px) {
+    font-size: 2rem;
+  }
 `;
 
 const InfoLabelLeft = styled.div`
@@ -16,6 +19,9 @@ const InfoLabelLeft = styled.div`
   font-size: 1rem;
   float: left;
   width: 45%;
+  @media only screen and (max-width: 600px) {
+    width: 95%;
+  }
 `;
 
 const InfoLabelRight = styled.div`
@@ -24,6 +30,10 @@ const InfoLabelRight = styled.div`
   font-size: 1rem;
   float: right;
   width: 45%;
+  @media only screen and (max-width: 600px) {
+    width: 95%;
+    float: left;
+  }
 `;
 
 //News Sentiment component
