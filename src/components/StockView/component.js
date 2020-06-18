@@ -120,7 +120,7 @@ const StockView = ({
         <StockDaily
           todayHigh={formatDecimal(basicInfo.todayHigh)}
           todayLow={formatDecimal(basicInfo.todayLow)}
-          openPrice={formatDecimal(basicInfo.todayLow)}
+          openPrice={formatDecimal(basicInfo.openPrice)}
           prevClose={formatDecimal(basicInfo.prevClose)}
         />
         <StockInfo
