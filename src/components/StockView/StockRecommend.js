@@ -29,13 +29,6 @@ const InfoLabelRight = styled.div`
   width: 45%;
 `;
 
-const BodyText = styled.p`
-  margin: 0px;
-  font-family: "PT Sans", serif;
-  margin-left: 2.5%;
-  font-size: 1rem;
-`;
-
 //Stock recommendations, taken from API
 const StockRecommend = ({ buy, sell, hold, strongBuy, strongSell }) => {
   return (
@@ -44,12 +37,13 @@ const StockRecommend = ({ buy, sell, hold, strongBuy, strongSell }) => {
       <InfoLabelLeft>
         <p>Buy: {buy}</p>
         <p>Strong Buy: {strongBuy}</p>
+        <p>Hold: {hold}</p>
       </InfoLabelLeft>
       <InfoLabelRight>
         <p>Sell: {sell}</p>
         <p>Strong Sell: {strongSell}</p>
+        <p>&nbsp;&nbsp;&nbsp;</p>
       </InfoLabelRight>
-      <BodyText>Hold: {hold}</BodyText>
     </>
   );
 };

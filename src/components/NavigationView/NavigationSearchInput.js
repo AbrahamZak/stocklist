@@ -34,7 +34,8 @@ const DropdownResult = styled.p`
 const Input = styled.input` 
   margin-top: 11px;
   font-family: "PT Sans", serif;
-  padding: 5px 10px;
+  padding: 5px;
+  width: 150px;
   color: black;
   background: white;
   border-color: black;
@@ -62,7 +63,7 @@ const NavigationSearchInput = () => {
   //Update our results whenever our query changes
   useEffect(() => {
     let results = data.default.filter(
-      ({ description }) => description.indexOf(query.toUpperCase()) > -1
+      ({ description, symbol }) => description.indexOf(query.toUpperCase()) > -1 || symbol.indexOf(query.toUpperCase()) > -1
     );
     setResults(results.slice(0, 10));
   }, [query]);
@@ -74,7 +75,7 @@ const NavigationSearchInput = () => {
       <Input
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        placeholder="Enter company name..."
+        placeholder="Company name or ticker..."
         type="text"
       />
       </Wrapper>

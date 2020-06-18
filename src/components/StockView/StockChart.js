@@ -7,8 +7,6 @@ import { createChart } from 'lightweight-charts';
 const Chart = styled.div`
   background-color: black;
   margin-left: 2.5%;
-  height: 50vh;
-  width: 100%;
 `;
 
 //The Stock Chart is created by taking the daily candlesticks from the API and deriving a chart from it using the TradingView Lightweight Charts Library
