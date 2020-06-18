@@ -116,7 +116,7 @@ const StockView = ({
           price={formatDecimal(basicInfo.price)}
           change={basicInfo.change}
         />
-        <StockChart candles={candles} />
+        <StockChart candles={candles} change={basicInfo.change}/>
         <StockDaily
           todayHigh={formatDecimal(basicInfo.todayHigh)}
           todayLow={formatDecimal(basicInfo.todayLow)}

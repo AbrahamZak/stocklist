@@ -21,7 +21,7 @@ const StockPrice = ({ price, change }) => {
     changeColor = "lightgreen";
   } else {
     changeColor = "#ff644d";
-  }
+  } 
 
   //Add a sign to positive changes
   let sign = null;

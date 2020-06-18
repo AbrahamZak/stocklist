@@ -46,7 +46,7 @@ See latest news for stock (company news, buzz scores, news sentiment, sector new
 See related stocks and click on any to navigate to that stock's page - 100%\
 Add stock to watchlist (when logged in) - 100%\
 Remove Stock from watchlist (when logged in) - 100%\
-Interactive stock chart - 50%\
+Interactive stock chart / candlestick chart (switch between) - 100%\
 \
 Watchlist page (when logged in) (100%)\
 Design - 100%\
@@ -63,12 +63,4 @@ Develop backend login server / watchlist API (100%)\
 Deploy Server (100%)\
 Connect to React Frontend (100%)
 
-## Known Issues
-~~Interactive chart doesn't dynamically resize (FIXED)~~
-
-## Next Updates (In order)
-~~-Change add to watchlist button into "remove from watchlist" when a stock is already in watchlist~~\
-~~-Remove stock from watchlist in the actual watchlist page~~\
--~~Deploy API/Login Server~~\
--~~Mobile adjustments~~\
--~~Create design for stock chart~~
+## Project completed (aside from any future bug fixes or feature additions/updates)
