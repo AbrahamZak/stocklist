@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://stocklistserver.herokuapp.com/users/";
+const API_URL = "https://stocklist-317600.uk.r.appspot.com/users/";
 
 //All methods relating to user services, includes getting watchlist and updating watchlist
 class UserService {
